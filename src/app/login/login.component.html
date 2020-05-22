@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+     
+    <div ibmGrid [condensed]=false style="margin-top: 150px; ">
+      
+     <!-- <svg ibmIconWarning size="16" aria-labelledby="warningLabel"></svg>
+ 
+ <label id="warningLabel">Incorrect Credentials</label>  -->
+     
+      <div
+          ibmRow
+          [gutter]=true
+          [leftGutter]=true
+          [rightGutter]=true
+          [condensed]=false style="margin-top:auto;">
+          <ibm-label>
+            <label style="font-weight: bolder; font-size: medium;">W3 Intranet Id</label>
+            <input ibmText formControlName="userName" placeholder="Ex :Joe@us.ibm.com" style="width: auto;">
+        </ibm-label>
+          </div>
+          <br>
+          <div
+          ibmRow
+          [gutter]=true
+          [leftGutter]=true
+          [rightGutter]=true
+          [condensed]=false style="margin-top:auto;">
+          <ibm-label>
+            <label style="font-weight: bolder; font-size: medium;">Password</label>
+            <input ibmText type="password" formControlName="password" placeholder="Password" style="width: auto;">
+        </ibm-label>
+          </div>
+          <br>
+          <div
+          ibmRow
+          [gutter]=true
+          [leftGutter]=true
+          [rightGutter]=true
+          [condensed]=false style="margin-top:10px;">
+         
+            <button   ibmButton="primary" size="normal" type="submit" [disabled]="!loginForm.valid" style="align-self: flex-end;" >Sign In
+                <!-- <svg ibmIconLogin size="32"></svg> -->
+            </button>
+          </div>
+          <img class="loader" *ngIf="isLoading" src="assets/images/ibm_bee.gif" />
+        
+    </div>
+</form>
+

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~carbon-components/scss/globals/scss/styles";
+
+.page-header{
+   margin-left: 250px;
+}
+
+.loader {
+    background:  #e9e9e9;
+    position:fixed;display:none
+}
+
+// top:40%;left:45%;z-index:3;
