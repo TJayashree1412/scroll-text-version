@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private router: Router, public dataservice: LoginService,private headerService:HeaderService) { }
+  constructor(private fb: FormBuilder, private router: Router, public dataservice: LoginService,private headerService:HeaderService,private loginService : LoginService) { }
 
   ngOnInit() {
     sessionStorage.clear();
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.overlay = true;
     this.loginFailure = false;
     let data = await this.dataservice.authenticate(this.loginForm.value.userName,this.loginForm.value.password);
-    console.log("data:"+JSON.stringify(data));
+  
     if (data.errorCode==0)
     {
      sessionStorage.setItem('loggeduser',this.loginForm.value.userName);
@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
   }
 
   SignOut(){
-    sessionStorage.clear();
     this.headerService.removeLoggedInUserDetails();
+    this.loginService.logout();
   }
 }
 
