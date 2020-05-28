@@ -14,10 +14,9 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 import { HomeComponent } from './home/home.component';
-import {LoginModule} from '@carbon/icons-angular';
-import { NavigationComponent } from './navigation/navigation.component';
-import { RoutingComponent } from './routing/routing.component';
+import {LoginModule,LogoutModule,FadeModule} from '@carbon/icons-angular';
 import { CompensationhomeComponent } from './compensationhome/compensationhome.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +24,6 @@ import { CompensationhomeComponent } from './compensationhome/compensationhome.c
     LoginComponent,
     PrivacyNoticeComponent,
     HomeComponent,
-    NavigationComponent,
-    RoutingComponent,
     CompensationhomeComponent
   ],
   imports: [
@@ -36,32 +33,35 @@ import { CompensationhomeComponent } from './compensationhome/compensationhome.c
     FormsModule,
 	ReactiveFormsModule,
 	UIShellModule,
-		NotificationModule,
-		UserAvatarModule,
-		AppSwitcherModule,
-		CommonModule,
-		GridModule,
-		ListModule,
-		TabsModule,
-		TilesModule,
-		InputModule,
-		ButtonModule,
-		ContentSwitcherModule,
-		SideNavModule,
-		RadioModule,
-		CheckboxModule,
-		ToggleModule,
-		DropdownModule,
-		FileUploaderModule,
-		LoadingModule,
-		DatePickerModule,
-		ModalModule,
-		TableModule,
-		PaginationModule,
-		AccordionModule,
-		AddModule,
-		WarningModule,
-		LoginModule,
+	NotificationModule,
+	UserAvatarModule,
+	AppSwitcherModule,
+	CommonModule,
+	GridModule,
+	ListModule,
+	TabsModule,
+	TilesModule,
+	InputModule,
+	ButtonModule,
+	ContentSwitcherModule,
+	SideNavModule,
+	RadioModule,
+	CheckboxModule,
+	ToggleModule,
+	DropdownModule,
+	FileUploaderModule,
+	LoadingModule,
+	DatePickerModule,
+	ModalModule,
+	TableModule,
+	PaginationModule,
+	AccordionModule,
+	AddModule,
+	WarningModule,
+	LoginModule,
+	LogoutModule,
+	FadeModule
+	
   ],
   providers: [],
   bootstrap: [AppComponent]

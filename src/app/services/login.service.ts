@@ -32,7 +32,6 @@ export class LoginService {
       .then(
         data => {
           console.log("POST Request is successful ", data);
-          //this.response = data.json();
           this.response = JSON.parse(data);
           console.log("POST Request is successful ", JSON.parse(data));
         },

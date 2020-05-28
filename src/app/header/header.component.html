@@ -1,113 +1,110 @@
 
-<ibm-header name=" [US-HCAM] ">
+<ibm-header name=" US HCAM ">
     <!-- <ibm-hamburger  [active]="active" (selected)="active = !active"></ibm-hamburger> -->
     <div style="margin-left: 1000px;" *ngIf="isUserAuthenticated()" > 
         <img  style="height: 30px;width: 30px; "src="{{profilePic}}"  class="hp-signin-img"><span style="color: white;"> 
     <b> {{username}} </b></span></div> 
-    <div *ngIf="isUserAuthenticated()" style="margin-left: 100px;cursor: pointer; color: white;" (click)="SignOut()" >
-        <span style="font-size: medium;">   Sign out  </span>
+    <div *ngIf="isUserAuthenticated()" style="margin-left: 100px; color: white;" >
+        <span style="font-size: medium;">   <ibm-header-action  (click)="SignOut();" title="Sign Out">
+            <svg ibmIconLogout size="32" ></svg>
+        </ibm-header-action> </span>
     </div>
    
 </ibm-header>
-
-<ibm-sidenav  *ngIf="isNavigated()" style="width: auto;">
-    <ibm-sidenav-item  *ngIf="Roles.includes('site-home')">Home</ibm-sidenav-item>
-    <ibm-sidenav-menu *ngIf="Roles.includes('VUSASSC')" title="US Landed" >
-        <ibm-sidenav-item *ngIf="Roles.includes('VUSASSC')" [route] ="'/viewHome'" >US Landed Home</ibm-sidenav-item>    
-             <ibm-sidenav-item *ngIf="Roles.includes('VIBML')" [route] ="'/myCompRequest'" >US HCAM contacts</ibm-sidenav-item>
-             <ibm-sidenav-item *ngIf="Roles.includes('VIBMID')"  [route] ="'/allCompHistory'">US HCAM Employee forms</ibm-sidenav-item>
-             <ibm-sidenav-item *ngIf="Roles.includes('VEMPINFO')"   [route] ="'/assignmentStatus'">Employee info</ibm-sidenav-item>
-             <ibm-sidenav-item *ngIf="Roles.includes('VDATAST')"   [route] ="'/drLeaveRequest'">Datasheet input</ibm-sidenav-item>
-             <ibm-sidenav-item *ngIf="Roles.includes('VSTATUS')"  [route] ="'/myCompRequest'" >Employee assignment status</ibm-sidenav-item>
-             <ibm-sidenav-item *ngIf="Roles.includes('VEASR')"  [route] ="'/allCompHistory'">AEmployee assignment response</ibm-sidenav-item>
-             <ibm-sidenav-item *ngIf="Roles.includes('VLEVREQ')"   [route] ="'/assignmentStatus'">Leave requests</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VSLEAVE')"   [route] ="'/drLeaveRequest'">Track sick time</ibm-sidenav-item>
+<ibm-sidenav  *ngIf="isNavigated()"  (click)="onClickNavItem($event)">
+    <ibm-sidenav-item  *ngIf="Roles.includes('site-home')" id="home"  [active]="currentNavId === 'home'"> Home</ibm-sidenav-item>
+    <ibm-sidenav-menu *ngIf="Roles.includes('VUSASSC')" id="usLanded"  title="US Landed">
+            <ibm-sidenav-item *ngIf="Roles.includes('VUSASSC')" id="usLandedHome"   [route] ="'/viewHome'"          [active]="currentNavId === 'usLandedHome'" >US Landed Home</ibm-sidenav-item>    
+            <ibm-sidenav-item *ngIf="Roles.includes('VIBML')"   id="hcamContact"    [route] ="'/myCompRequest'"     [active]="currentNavId === 'hcamContact'">US HCAM contacts</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VIBMID')"  id="empForms"       [route] ="'/allCompHistory'"    [active]="currentNavId === 'empForms'">US HCAM Employee forms</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VEMPINFO')"id="empInfo"        [route] ="'/assignmentStatus'"  [active]="currentNavId === 'empInfo'">Employee info</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VDATAST')" id="dsInput"        [route] ="'/drLeaveRequest'"    [active]="currentNavId === 'dsInput'">Datasheet input</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VSTATUS')" id="empAssignStatus"[route] ="'/myCompRequest'"     [active]="currentNavId === 'empAssignStatus'">Employee assignment status</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VEASR')"   id="empAssignResp"  [route] ="'/allCompHistory'"    [active]="currentNavId === 'empAssignResp'">AEmployee assignment response</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VLEVREQ')" id="empLeaveRequest" [route] ="'/assignmentStatus'"  [active]="currentNavId === 'empLeaveRequest'">Leave requests</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VSLEAVE')" id="trckSicktime"   [route] ="'/drLeaveRequest'"    [active]="currentNavId === 'trckSicktime'">Track sick time</ibm-sidenav-item>
     </ibm-sidenav-menu>
-    <ibm-sidenav-menu *ngIf="Roles.includes('VCMPLST')" title="Compensation">
-            <ibm-sidenav-item   *ngIf="Roles.includes('VCMPLST')" [route] = "['/compHome']">Compensation Home</ibm-sidenav-item>
-            <ibm-sidenav-item   *ngIf="Roles.includes('VCMPLST')" [route] = "['/myCompRequest']">My Comp Request</ibm-sidenav-item>
-            <ibm-sidenav-item  *ngIf="Roles.includes('VALCMPHS')"  [route] ="['/allCompHistory']">All Comp History</ibm-sidenav-item>
-            <ibm-sidenav-item  *ngIf="Roles.includes('VALREPTS')"  [route] ="['/assignmentStatus']">Assignment Status</ibm-sidenav-item>
-            <ibm-sidenav-item  *ngIf="Roles.includes('VALLEVRQ')"   [route] ="['/drLeaveRequest']">Leave Request</ibm-sidenav-item>
+    <ibm-sidenav-menu *ngIf="Roles.includes('VCMPLST')" id="compensation" title="Compensation" >
+            <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLST')" id ="compHome"       [route] = "['/compHome']"        [active]="currentNavId === 'compHome'">Compensation Home</ibm-sidenav-item>
+            <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLST')" id ="myCompRequest"  [route] = "['/myCompRequest']"   [active]="currentNavId === 'myCompRequest'">My Comp Request</ibm-sidenav-item>
+            <ibm-sidenav-item  *ngIf="Roles.includes('VALCMPHS')"id ="allcomp"        [route] ="['/allCompHistory']"   [active]="currentNavId === 'allcomp'">All Comp History</ibm-sidenav-item>
+            <ibm-sidenav-item  *ngIf="Roles.includes('VALREPTS')"id ="assignmtStatus" [route] ="['/assignmentStatus']" [active]="currentNavId === 'assignmtStatus'">Assignment Status</ibm-sidenav-item>
+            <ibm-sidenav-item  *ngIf="Roles.includes('VALLEVRQ')"id ="drLeaveRequest" [route] ="['/drLeaveRequest']"   [active]="currentNavId === 'drLeaveRequest'">Leave Request</ibm-sidenav-item>
     </ibm-sidenav-menu>
-    <ibm-sidenav-item  *ngIf="Roles.includes('VCMSTLST')" [route]="['compensationListST']">Staffing Team</ibm-sidenav-item>
-    <ibm-sidenav-menu  *ngIf="Roles.includes('VHQops')" title="HqOps">  
-        <!-- <ibm-sidenav-item  *ngIf="Roles.includes('VHQops')" [route]="['/hqOps']">Hq Ops</ibm-sidenav-item> -->
-            <ibm-sidenav-item  *ngIf="Roles.includes('VIMMGLST')" [route]="['/Home']">Immigration</ibm-sidenav-item>
-            <ibm-sidenav-menu  *ngIf="Roles.includes('VCMTALL')" title ="All Comp Requests">
-                <ibm-sidenav-item  *ngIf="Roles.includes('VCMTALL')" [route]="['/allCompRequest']">All Comp Request</ibm-sidenav-item>
-          
-                  <ibm-sidenav-item *ngIf="Roles.includes('VCMTLST')"   [route] ="'/compHome'" >Compensation</ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('VCMPPEND')"    [route] ="'/viewPendingAction'" >Pending action</ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('COMPAPPR')"   [route] ="'/viewApprvpending'" >Approve comp</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLCT')"    [route] ="'/viewLctTrnsfr'" >Redeployment tracker</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VONSITE')"  [route] ="'/viewOnsiteHire'" >Onsite hire comp</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VPROCES')"    [route] ="'/viewProcessRecord'" >Immediate action</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VCMPMGR')" [route] ="'/compteamMngrView'" >Manager action</ibm-sidenav-item>
-                  <ibm-sidenav-item i *ngIf="Roles.includes('VCOMPDS')"   [route] ="'/viewAllDataSheets'" >Data sheets</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VCMPVIEW')"  [route] ="'/compensationViews'" >Comp views</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VELCSIGN')"  [route] ="'/electronicSignature'" >Electronic signature</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VEARH')"    [route] ="'/empAssignResp'" >Employee assignment response</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VLCAINP')"  [route] ="'/ViewH1BLCAExtension'" >H1B extension LCA input </ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VRCOMPCL')"   [route] ="'/relocCompChkListHome'" >Redeployment completion check list</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('ENDCLT')"  [route] ="'/ViewEndClientDtl'" >End client name</ibm-sidenav-item>
-                  <ibm-sidenav-item  *ngIf="Roles.includes('NCOMPREQ')"   [route] ="'/listCompReqCtdByCS'" >Raise compensation request</ibm-sidenav-item>
-            </ibm-sidenav-menu>
+    <ibm-sidenav-item  *ngIf="Roles.includes('VCMSTLST')" id="staffingTeam" [route]="['compensationListST']"  [active]="currentNavId === 'staffingTeam'">Staffing Team</ibm-sidenav-item>
+    <ibm-sidenav-menu  *ngIf="Roles.includes('VHQops')"  id="HqOps" title="HqOps">  
+            <ibm-sidenav-item  *ngIf="Roles.includes('VIMMGLST')" id="immigration"[route]="['/Home']">Immigration</ibm-sidenav-item>
+                <ibm-sidenav-menu  *ngIf="Roles.includes('VCMTALL')" id="allCompRequest"title ="All Comp Requests">
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VCMTALL')"  id="allCompRequestHome"      [route]="['/allCompRequest']"       [active]="currentNavId === 'allCompRequestHome'">All Comp Request</ibm-sidenav-item>
+                     <ibm-sidenav-item *ngIf="Roles.includes('VCMTLST')"   id="compensation"            [route] ="['/comp']"                [active]="currentNavId === 'compensation'">Compensation</ibm-sidenav-item>
+                     <ibm-sidenav-item *ngIf="Roles.includes('VCMPPEND')"  id="pendingComp"             [route] ="['/viewPendingAction']"   [active]="currentNavId === 'pendingComp'">Pending action</ibm-sidenav-item>
+                     <ibm-sidenav-item *ngIf="Roles.includes('COMPAPPR')"  id="approveComp"             [route] ="['/viewApprvpending']"    [active]="currentNavId === 'approveComp'">Approve comp</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLCT')"  id="viewLctTrnsfr"           [route] ="['/viewLctTrnsfr']"       [active]="currentNavId === 'viewLctTrnsfr'">Redeployment tracker</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VONSITE')"  id ="viewOnsiteHire"         [route] ="['/viewOnsiteHire']"      [active]="currentNavId === 'viewOnsiteHire'">Onsite hire comp</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VPROCES')"  id="viewProcessRecord"       [route] ="['/viewProcessRecord']"   [active]="currentNavId === 'viewProcessRecord'">Immediate action</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VCMPMGR')"  id="compteamMngrView"        [route] ="['/compteamMngrView']"    [active]="currentNavId === 'compteamMngrView'">Manager action</ibm-sidenav-item>
+                     <ibm-sidenav-item i *ngIf="Roles.includes('VCOMPDS')" id="viewAllDataSheets"       [route] ="['/viewAllDataSheets']"   [active]="currentNavId === 'viewAllDataSheets'">Data sheets</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VCMPVIEW')" id="compensationViews"       [route] ="['/compensationViews']"   [active]="currentNavId === 'compensationViews'">Comp views</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VELCSIGN')" id="electronicSignature"     [route] ="['/electronicSignature']" [active]="currentNavId === 'electronicSignature'">Electronic signature</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VEARH')"    id="empAssignRespinComp"     [route] ="['/empAssignResp']"       [active]="currentNavId === 'empAssignRespinComp'" >Employee assignment response</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VLCAINP')"  id="ViewH1BLCAExtension"     [route] ="['/ViewH1BLCAExtension']" [active]="currentNavId === 'ViewH1BLCAExtension'">H1B extension LCA input </ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('VRCOMPCL')" id="relocCompChkListHome"    [route] ="['/relocCompChkListHome']"[active]="currentNavId === 'relocCompChkListHome'">Redeployment completion check list</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('ENDCLT')"   id ="ViewEndClientDtl"       [route] ="['/ViewEndClientDtl']"    [active]="currentNavId === 'ViewEndClientDtl'">End client name</ibm-sidenav-item>
+                     <ibm-sidenav-item  *ngIf="Roles.includes('NCOMPREQ')" id="listCompReqCtdByCS"      [route] ="['/listCompReqCtdByCS']"  [active]="currentNavId === 'listCompReqCtdByCS'">Raise compensation request</ibm-sidenav-item>
+                </ibm-sidenav-menu>
 
-            <ibm-sidenav-menu  *ngIf="Roles.includes('VOBLIST')" title ="Onboarding">
-                  <ibm-sidenav-item  *ngIf="Roles.includes('VOBLIST')" [route]="['/onboardingList']">Onboarding</ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('OBAPPR')"   [route] ="'/obApprover'" >Onboarding Approver</ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('VOBVIEW')"   [route] ="'/onboaringViews'" >Onboarding views </ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('VGENVIEW')"   [route] ="'/generalViews'" >General views</ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('VOBREP')" [route] ="'/onboardReports'" >Onboard Reports</ibm-sidenav-item>
-                  <ibm-sidenav-item *ngIf="Roles.includes('FMLAAPPR')"  [route] ="'/fmlaView'" >FMLA Approver</ibm-sidenav-item>
+            <ibm-sidenav-menu  *ngIf="Roles.includes('VOBLIST')"       id="onboarding" title ="Onboarding"  >
+                  <ibm-sidenav-item  *ngIf="Roles.includes('VOBLIST')" id="onboardHome"     [route]="['/onboardingList']"  [active]="currentNavId === 'onboardHome'">Onboarding</ibm-sidenav-item>
+                  <ibm-sidenav-item *ngIf="Roles.includes('OBAPPR')"   id ="obApprover"     [route] ="['/obApprover']"     [active]="currentNavId === 'obApprover'">Onboarding Approver</ibm-sidenav-item>
+                  <ibm-sidenav-item *ngIf="Roles.includes('VOBVIEW')"  id="onboaringViews"  [route] ="['/onboaringViews']" [active]="currentNavId === 'onboaringViews'" >Onboarding views </ibm-sidenav-item>
+                  <ibm-sidenav-item *ngIf="Roles.includes('VGENVIEW')" id="generalViews"    [route] ="['/generalViews']"   [active]="currentNavId === 'generalViews'" >General views</ibm-sidenav-item>
+                  <ibm-sidenav-item *ngIf="Roles.includes('VOBREP')"   id="onboardReports"  [route] ="['/onboardReports']" [active]="currentNavId === 'onboardReports'" >Onboard Reports</ibm-sidenav-item>
+                  <ibm-sidenav-item *ngIf="Roles.includes('FMLAAPPR')" id="fmlaView"        [route] ="['/fmlaView']"       [active]="currentNavId === 'fmlaView'">FMLA Approver</ibm-sidenav-item>
             </ibm-sidenav-menu>
         
             <ibm-sidenav-menu  *ngIf="Roles.includes('VOBADM')" title ="OB Admin">
-                <ibm-sidenav-item  *ngIf="Roles.includes('VOBADM')" [route]="['/obAdmin']">OB Admin</ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VNBLSTOB')"  [route] ="'/ViewOBNB'" >Notice board</ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VDOCSOB')"    [route] ="'/ViewOBDoc'" >Documents </ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VOBLTEMP')"  [route] ="'/viewLetterTemplates'" >Letter templates</ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VHLPCNT')" [route] ="'/helpContent'" >Help content</ibm-sidenav-item>
+                <ibm-sidenav-item  *ngIf="Roles.includes('VOBADM')"   id="obAdmin"              [route]="['/obAdmin']"              [active]="currentNavId === 'obAdmin'">OB Admin</ibm-sidenav-item>
+                <ibm-sidenav-item *ngIf="Roles.includes('VNBLSTOB')"  id="ViewOBNB"             [route] ="['/ViewOBNB']"            [active]="currentNavId === 'ViewOBNB'">Notice board</ibm-sidenav-item>
+                <ibm-sidenav-item *ngIf="Roles.includes('VDOCSOB')"   id="ViewOBDoc"            [route] ="['/ViewOBDoc']"           [active]="currentNavId === 'ViewOBDoc'">Documents </ibm-sidenav-item>
+                <ibm-sidenav-item *ngIf="Roles.includes('VOBLTEMP')"  id="viewLetterTemplates"  [route] ="['/viewLetterTemplates']" [active]="currentNavId === 'viewLetterTemplates'">Letter templates</ibm-sidenav-item>
+                <ibm-sidenav-item *ngIf="Roles.includes('VHLPCNT')"   id="helpContent"          [route] ="['/helpContent']"         [active]="currentNavId === 'helpContent'">Help content</ibm-sidenav-item>
             </ibm-sidenav-menu>
     </ibm-sidenav-menu>
-    <ibm-sidenav-item  *ngIf="Roles.includes('VPROCLST')" [route]="['/Home']">Procurement</ibm-sidenav-item>
+    <ibm-sidenav-item  *ngIf="Roles.includes('VPROCLST')" id="procurement" [route]="['/Home']" [active]="currentNavId === 'procurement'" >Procurement</ibm-sidenav-item>
 
     <ibm-sidenav-menu  *ngIf="Roles.includes('VTRALIST')" title ="Immigration">
-        <ibm-sidenav-item  *ngIf="Roles.includes('VTRALIST')" [route]="['/immigration']">Immigration</ibm-sidenav-item>
-        <ibm-sidenav-item *ngIf="Roles.includes('VPLLIST')"  [route] ="['/preLandingList']" >Pre-Landing List</ibm-sidenav-item>
-        <ibm-sidenav-item *ngIf="Roles.includes('VIMREP')"  [route] ="['/immReportsHome']" >Immigration Reports</ibm-sidenav-item>
+        <ibm-sidenav-item  *ngIf="Roles.includes('VTRALIST')" id="immigrationHome" [route]="['/immigration']"     [active]="currentNavId === 'immigrationHome'">Immigration</ibm-sidenav-item>
+        <ibm-sidenav-item *ngIf="Roles.includes('VPLLIST')"  id="preLandingList"   [route] ="['/preLandingList']" [active]="currentNavId === 'preLandingList'">Pre-Landing List</ibm-sidenav-item>
+        <ibm-sidenav-item *ngIf="Roles.includes('VIMREP')"  id = "immReportsHome"  [route] ="['/immReportsHome']" [active]="currentNavId === 'immReportsHome'" >Immigration Reports</ibm-sidenav-item>
     </ibm-sidenav-menu>
 
-    <ibm-sidenav-item  *ngIf="Roles.includes('VAPPDOCS')" [route]="['/ViewAppDocs']">Documents</ibm-sidenav-item>
-    <ibm-sidenav-menu *ngIf="Roles.includes('VADMHM')"     title="Administrator">
-            <ibm-sidenav-item *ngIf="Roles.includes('VADMHM')"     [route] ="['/admHome']" >Administrator Home</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VPARLIST')" [route] ="['/ViewParam']" >Parameters</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VIBMIC')"   [route] ="['/viewIBMI']" >US HCAM Contacts </ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VUSACLST')" [route] ="['/ViewAcnt']" >US account contacts</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VNBD')"     [route] ="['/ViewNB']" >Notice board</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VDOCSADM')" [route] ="['/ViewDoc']" >Documents</ibm-sidenav-item>
-            <ibm-sidenav-menu *ngIf="Roles.includes('VOESDATA')" title=" OES Data">
-                <ibm-sidenav-item *ngIf="Roles.includes('VPREVAIL')" [route] ="['/GetPrevail']" >Prewailing wages</ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VGEOTIER')" [route] ="['/GetGeoTier']" >Geo tier</ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VGEOSAL')"  [route] ="['/ShowGeoSal']" >Geo Sal</ibm-sidenav-item>
-                <ibm-sidenav-item *ngIf="Roles.includes('VSALSEL')"  [route] ="['/ShowSalSelect']" >Salary select</ibm-sidenav-item>
-              </ibm-sidenav-menu>
-            <ibm-sidenav-item *ngIf="Roles.includes('VZIPCODE')" [route] ="['/ShowZip']" >Zip codes</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VSETALLW')" [route] ="['/ViewSettle']" >Settlement allowances</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VPAYDT')"   [route] ="['/listPayrollDates']" >Payroll dates</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VSECTIND')" [route] ="['/listSectIndData']" >Sector-Industry</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VLETTEMP')" [route] ="['/viewLetterTemplates']" >Upload letter templates</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VHOLIDAY')" [route] ="['/listHolidayDates']" >Holiday list</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VSSTATE')"  [route] ="['/viewSickStateList']" >Sick state details</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VCOUNT')"   [route] ="['/viewcountryCodes']" >Country codes</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VFILEUP')"  [route] ="['/uploadFilesHome']" >File uploads</ibm-sidenav-item>
-            <ibm-sidenav-item *ngIf="Roles.includes('VSALPERC')" [route] ="['/SalRangePercentageHome']" >Salary percentage</ibm-sidenav-item>
+    <ibm-sidenav-item  *ngIf="Roles.includes('VAPPDOCS')" id = "docs "[route]="['/ViewAppDocs']" [active]="currentNavId === 'docs'" >Documents</ibm-sidenav-item>
+    
+    <ibm-sidenav-menu *ngIf="Roles.includes('VADMHM')"   title="Administrator">
+            <ibm-sidenav-item *ngIf="Roles.includes('VADMHM')"   id="adminHome"  [route] ="['/admHome']" [active]="currentNavId === 'adminHome'" >Administrator Home</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VPARLIST')" id= "ViewParam" [route] ="['/ViewParam']" [active]="currentNavId === 'ViewParam'">Parameters</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VIBMIC')"   id= "viewIBMI"  [route] ="['/viewIBMI']" [active]="currentNavId === 'viewIBMI'">US HCAM Contacts </ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VUSACLST')" id = "ViewAcnt" [route] ="['/ViewAcnt']" [active]="currentNavId === 'ViewAcnt'">US account contacts</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VNBD')"     id="ViewNB"     [route] ="['/ViewNB']"  [active]="currentNavId === 'ViewNB'">Notice board</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VDOCSADM')" id="ViewDoc"    [route] ="['/ViewDoc']" [active]="currentNavId === 'ViewDoc'">Documents</ibm-sidenav-item>
+                <ibm-sidenav-menu *ngIf="Roles.includes('VOESDATA')" title=" OES Data">
+                    <ibm-sidenav-item *ngIf="Roles.includes('VPREVAIL')" id="GetPrevail"    [route] ="['/GetPrevail']"     [active]="currentNavId === 'GetPrevail'">Prewailing wages</ibm-sidenav-item>
+                    <ibm-sidenav-item *ngIf="Roles.includes('VGEOTIER')" id ="GetGeoTier"   [route] ="['/GetGeoTier']"     [active]="currentNavId === 'GetGeoTier'" >Geo tier</ibm-sidenav-item>
+                    <ibm-sidenav-item *ngIf="Roles.includes('VGEOSAL')"  id ="ShowGeoSal"   [route] ="['/ShowGeoSal']"     [active]="currentNavId === 'ShowGeoSal'">Geo Sal</ibm-sidenav-item>
+                    <ibm-sidenav-item *ngIf="Roles.includes('VSALSEL')"  id="ShowSalSelect" [route] ="['/ShowSalSelect']"   [active]="currentNavId === 'ShowSalSelect'" >Salary select</ibm-sidenav-item>
+                </ibm-sidenav-menu>
+            <ibm-sidenav-item *ngIf="Roles.includes('VZIPCODE')" id="ShowZip"                [route] ="['/ShowZip']"                 [active]="currentNavId === 'ShowZip'">Zip codes</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VSETALLW')" id="ViewSettle"             [route] ="['/ViewSettle']"              [active]="currentNavId === 'ViewSettle'">Settlement allowances</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VPAYDT')"   id="listPayrollDates"       [route] ="['/listPayrollDates']"        [active]="currentNavId === 'listPayrollDates'">Payroll dates</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VSECTIND')" id="listSectIndData"        [route] ="['/listSectIndData']"         [active]="currentNavId === 'listSectIndData'">Sector-Industry</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VLETTEMP')" id="viewLetterTemplates"    [route] ="['/viewLetterTemplates']"     [active]="currentNavId === 'viewLetterTemplates'" >Upload letter templates</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VHOLIDAY')" id="listHolidayDates"       [route] ="['/listHolidayDates']"        [active]="currentNavId === 'listHolidayDates'">Holiday list</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VSSTATE')"  id="viewSickStateList"      [route] ="['/viewSickStateList']"       [active]="currentNavId === 'viewSickStateList'">Sick state details</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VCOUNT')"   id="viewcountryCodes"       [route] ="['/viewcountryCodes']"        [active]="currentNavId === 'viewcountryCodes'">Country codes</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VFILEUP')"  id="uploadFilesHome"        [route] ="['/uploadFilesHome']"         [active]="currentNavId === 'uploadFilesHome'" >File uploads</ibm-sidenav-item>
+            <ibm-sidenav-item *ngIf="Roles.includes('VSALPERC')" id="SalRangePercentageHome" [route] ="['/SalRangePercentageHome']"  [active]="currentNavId === 'SalRangePercentageHome'" >Salary percentage</ibm-sidenav-item>
         </ibm-sidenav-menu>
         
-        <ibm-sidenav-item  *ngIf="Roles.includes('VHELP')" [route]="['/help']">Help</ibm-sidenav-item>
+        <ibm-sidenav-item  *ngIf="Roles.includes('VHELP')" id="help" [route]="['/help']" [active]="currentNavId === 'help'" >Help</ibm-sidenav-item>
        
-             
-             
-        
-    </ibm-sidenav>
+</ibm-sidenav>
