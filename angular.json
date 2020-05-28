@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Hcam"
+    }
+  },
+  "defaultProject": "Hcam",
+  "cli": {
+    "analytics": false
+  }
 }

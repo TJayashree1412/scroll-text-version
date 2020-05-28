@@ -1,0 +1,140 @@
+<div class="page-header" >
+    <ibm-accordion>
+        <ibm-accordion-item title="Compensation Requests - In Progress" expanded="true">
+            <ibm-table-container>
+                <p>Status : Draft</p>
+	            <ibm-table
+	                [skeleton]="skeleton"
+	                [model]="skeleton ? skeletonModel : modelDraft"
+	                [showSelectionColumn]="false"
+                    [striped]="false">
+                </ibm-table>
+                <p>Status : Initiated</p>
+                
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelInit"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <p>Status:Initiated-Required Information Added</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelInitAddnInfoAdded"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <p>Status : Discuss</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelDiscuss"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <p>Status : Discuss - Required Info added</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelDiscussReqInfoAdded"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <p>Status:Manager Accepted</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelMgrAccepted"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <p>Status:Override Manager Acceptance</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelMgrAcceptanceOverriden"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+            </ibm-table-container>
+        </ibm-accordion-item>
+        <ibm-accordion-item title="Compensation Requests - Active" >
+            <ibm-table-container>
+                <p>Status:Initiated-Required Information Added</p>
+	            <ibm-table
+	                [skeleton]="skeleton"
+	                [model]="skeleton ? skeletonModel : modelAddnInfoReq"
+	                [showSelectionColumn]="false"
+                    [striped]="false">
+                </ibm-table>
+                <p>Status:Compensation For Review</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelForReview"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <p>Status : Discuss - Additional Info required</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelDiscussAddnInfoReq"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+	            <!-- <ibm-pagination
+                    [model]="model"    
+                    (selectPage)="selectPage($event)">
+                </ibm-pagination> -->
+            </ibm-table-container>
+        </ibm-accordion-item>
+        <ibm-accordion-item title="Compensation Requests - Completed" >
+            <ibm-table-container>
+                <p>Status : Request Processed</p>
+	            <ibm-table
+	                [skeleton]="skeleton"
+	                [model]="skeleton ? skeletonModel : modelReqProcessed"
+	                [showSelectionColumn]="false"
+                    [striped]="false">
+	            </ibm-table>
+	            <!-- <ibm-pagination
+                    [model]="model"    
+                    (selectPage)="selectPage($event)"> 
+                </ibm-pagination> -->
+            </ibm-table-container>
+        </ibm-accordion-item>
+        <ibm-accordion-item title="Compensation Requests - In-Active" >
+            <ibm-table-container>
+                <p>Status : Rejected</p>
+	            <ibm-table
+	                [skeleton]="skeleton"
+	                [model]="skeleton ? skeletonModel : modelRejected"
+	                [showSelectionColumn]="false"
+                    [striped]="false">
+                </ibm-table>
+                <p>Status : Archived</p>
+                <ibm-table
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : modelArchived"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+	            <!-- <ibm-pagination
+                    [model]="model"    
+                    (selectPage)="selectPage($event)"> 
+                </ibm-pagination> -->
+            </ibm-table-container>
+        </ibm-accordion-item>
+        <ibm-accordion-item title="Other Compensation Requests" >
+            <ibm-table-container>
+	            <ibm-table
+	                [skeleton]="skeleton"
+	                [model]="skeleton ? skeletonModel : modelOtherRecords"
+	                [showSelectionColumn]="false"
+                    [striped]="false">
+	            </ibm-table>
+	            <!-- <ibm-pagination
+                    [model]="model"    
+                    (selectPage)="selectPage($event)"> 
+                </ibm-pagination> -->
+            </ibm-table-container>
+        </ibm-accordion-item>
+    </ibm-accordion>
+</div>
+<!-- <div class="page-header"><app-component1></app-component1></div> -->
+
