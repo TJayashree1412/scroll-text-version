@@ -175,6 +175,7 @@
       & + .#{$prefix}--tabs__nav-item.#{$prefix}--tabs__nav-item--selected,
       &.#{$prefix}--tabs__nav-item--selected + .#{$prefix}--tabs__nav-item {
         box-shadow: none;
+        width: max-content;
       }
     }
   }
@@ -183,6 +184,7 @@
     transition: color $duration--fast-01 motion(standard, productive),
       border-bottom-color $duration--fast-01 motion(standard, productive),
       outline $duration--fast-01 motion(standard, productive);
+      width: max-content;
   }
 
   //-----------------------------
@@ -261,6 +263,7 @@
         @include type-style('productive-heading-01');
         color: $text-01;
         border-bottom: 2px solid $interactive-04;
+        width: max-content;
       }
     }
   }
@@ -284,6 +287,7 @@
       .#{$prefix}--tabs__nav-link:focus,
       .#{$prefix}--tabs__nav-link:active {
         box-shadow: none;
+        width: max-content;
       }
     }
   }
@@ -313,7 +317,7 @@
     &:focus,
     &:active {
       @include focus-outline('outline');
-      width: 100%;
+      width: max-content;
       margin: 0;
       padding-left: 16px;
     }

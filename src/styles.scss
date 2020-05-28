@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '@carbon/themes/scss/themes';
+$carbon--theme: $carbon--theme--g10;
+@include carbon--theme();
+
 // @import "~carbon-components/scss/globals/scss/styles";
 @import "./assets/carbon-components/scss/globals/scss/styles.scss";
-
-// html, body { height: 100%; width: 100%; background-color: white;}
-// body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 
 
 .page-header{
