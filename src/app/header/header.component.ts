@@ -21,11 +21,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.headerService.profilePic.subscribe(profilePic => {this.profilePic = profilePic});
     this.headerService.username.subscribe(username => {this.username = username});
-    this.headerService.navigation.subscribe(username => {this.navigation = username});
+   this.headerService.navigation.subscribe(navigation => {this.navigation = navigation});
+   this.headerService.roles.subscribe(Roles => {this.Roles = Roles});
  
-    let listofRoles = sessionStorage.getItem("userdata");
-    let json = JSON.parse(listofRoles);
-    this.Roles = json.actionEventList;
+   
+    console.log("isNavigate" ,sessionStorage.getItem("isNavigate"));
+    console.log("roles" , this.Roles);
     // this.currentNavId = "home";
   }
   SignOut(){
