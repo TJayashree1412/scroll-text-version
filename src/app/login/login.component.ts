@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,19 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent implements OnInit {
 
   submitted = false;
-  private errorMessage;
+   errorMessage :String;
   userName: string;
   loginFailure=false;
   isLoading :boolean =false;
+  isActive:boolean = false;
+  overlay:boolean = false;
 
   loginForm = this.fb.group({
     userName: ['', Validators.required],
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private router: Router, public dataservice: LoginService) { }
+  constructor(private fb: FormBuilder, private router: Router, public dataservice: LoginService,private headerService:HeaderService,private loginService : LoginService) { }
 
   ngOnInit() {
     sessionStorage.clear();
@@ -30,23 +33,33 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.isLoading = true;
     this.errorMessage='';
-    let getdata = await this.dataservice.authenticate(this.loginForm.value.userName,this.loginForm.value.password);
-    console.log("getdata:"+JSON.stringify(getdata));
-    //if (getdata.isSuccess==="true")
-    
-     sessionStorage.setItem('loggeduser',this.loginForm.value.userName);
-     sessionStorage.setItem('userdata',JSON.stringify(getdata));
-     sessionStorage.setItem('isAuthenticated',"true");
-     this.isLoading = false;
-    this.router.navigate(['/privacyNotice']);
+    this.isActive = true;
+    this.overlay = true;
+    this.loginFailure = false;
+    let data = await this.dataservice.authenticate(this.loginForm.value.userName,this.loginForm.value.password);
   
-    this.errorMessage='Incorrect IntranetID or Password';
+    if (data.errorCode==0)
+    {
+     sessionStorage.setItem('loggeduser',this.loginForm.value.userName);
+     sessionStorage.setItem('userdata',JSON.stringify(data));
+     sessionStorage.setItem('isAuthenticated',"true");
+     this.headerService.setLoggedInUserDetails();
+     this.isLoading = false;
+     this.isActive = false;
+     this.overlay = false;
+    this.router.navigate(['/privacyNotice']);
+  }
+  else{
+    this.errorMessage='Either Email or password is wrong';
     this.loginFailure=true;
+    sessionStorage.clear();
+  }
      return;
   }
 
   SignOut(){
-    sessionStorage.clear();
+    this.headerService.removeLoggedInUserDetails();
+    this.loginService.logout();
   }
 }
 

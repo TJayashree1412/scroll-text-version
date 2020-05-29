@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +10,24 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @HostBinding('class.bx--header') headerClass = true;
 
- username:string;
+ username:any;
   profilePic:any;
   Roles : any;
+  currentNavId: any;
+  navigation : any;
 
-  constructor(private router:Router ) {}
+  constructor(private router:Router,private headerService:HeaderService ) {}
 
   ngOnInit() {
-   let user = sessionStorage.getItem("loggeduser");
-    this.username = user;
-    this.profilePic="https://w3-services1.w3-969.ibm.com/myw3/unified-profile-photo/v1/image/"+sessionStorage.getItem("loggeduser");
-    let listofRoles = sessionStorage.getItem("userdata");
-    let json = JSON.parse(listofRoles);
-    this.Roles = json.actionEventList;
+    this.headerService.profilePic.subscribe(profilePic => {this.profilePic = profilePic});
+    this.headerService.username.subscribe(username => {this.username = username});
+   this.headerService.navigation.subscribe(navigation => {this.navigation = navigation});
+   this.headerService.roles.subscribe(Roles => {this.Roles = Roles});
+ 
+   
+    console.log("isNavigate" ,sessionStorage.getItem("isNavigate"));
+    console.log("roles" , this.Roles);
+    // this.currentNavId = "home";
   }
   SignOut(){
     sessionStorage.clear();
@@ -44,5 +50,9 @@ export class HeaderComponent implements OnInit {
       }
   }
 
+  onClickNavItem(event): void {
+    if (!event.target.closest('a')) { return; }
+    this.currentNavId = event.target.closest('ibm-sidenav-item').id;
+  }
 
 }

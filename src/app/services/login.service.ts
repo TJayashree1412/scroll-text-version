@@ -1,5 +1,6 @@
-import { Injectable, APP_ID } from '@angular/core';
-import { HttpResponse, HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {  HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,14 @@ export class LoginService {
   response: any;
   UserId: String;
   Pwd: String;
+ 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private router :Router) {
     this.actionUrl = 'http://localhost:8080/USHCAM';
   }
 
 
   async authenticate(userID: string, password: string): Promise<any> {
-    console.log("authenticate:"+userID + "password:"+password);
     let status: any = false;
     this.UserId = userID;
     this.Pwd = password;
@@ -31,10 +32,7 @@ export class LoginService {
       ).toPromise()
       .then(
         data => {
-          console.log("POST Request is successful ", data);
-          //this.response = data.json();
           this.response = JSON.parse(data);
-          console.log("POST Request is successful ", JSON.parse(data));
         },
         error => {
           console.log("Error in authenticate", error);
@@ -42,5 +40,13 @@ export class LoginService {
         }
       );
     return this.response;
+  }
+
+  logout(){
+    sessionStorage.setItem("userdata",null);
+    sessionStorage.setItem("isNavigate","false");
+    sessionStorage.clear();
+    
+    this.router.navigate(['/Login']);   
   }
 }

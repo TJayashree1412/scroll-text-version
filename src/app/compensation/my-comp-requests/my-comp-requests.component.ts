@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HCAMDBUser } from '../../../ts-classes/HCAMDBUser';
-import { CompensationDetailsDTO } from '../../../ts-classes/compensationDTOs/CompensationDetailsDTO';
+import { HCAMDBUser } from '../../ts-classes/HCAMDBUser';
+import { CompensationDetailsDTO } from '../../ts-classes/compensationDTOs/CompensationDetailsDTO';
 import { Router } from '@angular/router';
-import { CompensationService } from '../../../services/compensation.service';
+import { CompensationService } from '../../services/compensation.service';
 import { TableModel, Table, TableItem, TableHeaderItem } from 'carbon-components-angular';
 
 @Component({
