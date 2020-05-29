@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-
+$feature-flags: (
+  grid-columns-16: true
+);
 @import '@carbon/themes/scss/themes';
 $carbon--theme: $carbon--theme--g10;
 @include carbon--theme();

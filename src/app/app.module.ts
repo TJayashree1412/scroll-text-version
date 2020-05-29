@@ -15,7 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 import { HomeComponent } from './home/home.component';
 import {LoginModule,LogoutModule,FadeModule} from '@carbon/icons-angular';
-import { CompensationhomeComponent } from './compensationhome/compensationhome.component'
+import { CompensationhomeComponent } from './compensationhome/compensationhome.component';
+import { UpdateCompRequestComponent } from './update-comp-request/update-comp-request.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CompensationhomeComponent } from './compensationhome/compensationhome.c
     LoginComponent,
     PrivacyNoticeComponent,
     HomeComponent,
-    CompensationhomeComponent
+	CompensationhomeComponent,
+	UpdateCompRequestComponent
   ],
   imports: [
     BrowserModule,

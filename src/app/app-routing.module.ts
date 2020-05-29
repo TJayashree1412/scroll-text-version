@@ -5,6 +5,7 @@ import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.componen
 import { HomeComponent } from './home/home.component';
 import {CompensationhomeComponent} from './compensationhome/compensationhome.component';
 import {AuthenitcationService} from './authenticationService';
+import {UpdateCompRequestComponent} from './update-comp-request/update-comp-request.component';
 
 
 const routes: Routes = [ 
@@ -13,6 +14,7 @@ const routes: Routes = [
 { path: 'privacyNotice',component: PrivacyNoticeComponent,canActivate:[AuthenitcationService]},
 { path: 'Home', component: HomeComponent,canActivate:[AuthenitcationService] },
 { path: 'compHome', component: CompensationhomeComponent,canActivate:[AuthenitcationService]  },
+{ path: 'updateCompRequest', component: UpdateCompRequestComponent,canActivate:[AuthenitcationService]  },
 ];
 
 @NgModule({
