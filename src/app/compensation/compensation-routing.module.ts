@@ -20,8 +20,8 @@ const routes: Routes = [
     path: 'raiseCompRequest',
     component: RaiseCompRequestComponent
   },
-  { path: 'updateCompRequest', 
-  component: UpdateCompRequestComponent 
+  { path: 'updateCompRequest',
+  component: UpdateCompRequestComponent
   },
 ];
 

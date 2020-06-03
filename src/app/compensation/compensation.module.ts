@@ -13,7 +13,12 @@ import { EditCompRequestComponent } from './edit-comp-request/edit-comp-request.
 import { RaiseCompRequestComponent } from './raise-comp-request/raise-comp-request.component';
 import { UpdateCompRequestComponent } from './update-comp-request/update-comp-request.component';
 @NgModule({
-  declarations: [CompHomeComponent, MyCompRequestsComponent, EditCompRequestComponent, RaiseCompRequestComponent, UpdateCompRequestComponent],
+  declarations: [
+    CompHomeComponent,
+    MyCompRequestsComponent,
+    EditCompRequestComponent,
+    RaiseCompRequestComponent,
+    UpdateCompRequestComponent],
   imports: [
     CommonModule,
     CompensationRoutingModule,
