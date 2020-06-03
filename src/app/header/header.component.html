@@ -26,7 +26,7 @@
     </ibm-sidenav-menu>
     <ibm-sidenav-menu *ngIf="Roles.includes('VCMPLST')" id="compensation" title="Compensation" >
             <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLST')" id ="compHome"       [route] = "['/comp/compHome']"        [active]="currentNavId === 'compHome'">Compensation Home</ibm-sidenav-item>
-            <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLST')" id ="myCompRequest"  [route] = "['/comp/myCompRequest']"   [active]="currentNavId === 'myCompRequest'">My Comp Request</ibm-sidenav-item>
+            <ibm-sidenav-item  *ngIf="Roles.includes('VCMPLST')" id ="myCompRequest"  [route] = "['/comp/myCompRequests']"   [active]="currentNavId === 'myCompRequest'">My Comp Request</ibm-sidenav-item>
             <ibm-sidenav-item  *ngIf="Roles.includes('VALCMPHS')"id ="allcomp"        [route] ="['/allCompHistory']"   [active]="currentNavId === 'allcomp'">All Comp History</ibm-sidenav-item>
             <ibm-sidenav-item  *ngIf="Roles.includes('VALREPTS')"id ="assignmtStatus" [route] ="['/assignmentStatus']" [active]="currentNavId === 'assignmtStatus'">Assignment Status</ibm-sidenav-item>
             <ibm-sidenav-item  *ngIf="Roles.includes('VALLEVRQ')"id ="drLeaveRequest" [route] ="['/drLeaveRequest']"   [active]="currentNavId === 'drLeaveRequest'">Leave Request</ibm-sidenav-item>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompensationhomeComponent } from './compensationhome.component';
+import { EditCompRequestComponent } from './edit-comp-request.component';
 
-describe('CompensationhomeComponent', () => {
-  let component: CompensationhomeComponent;
-  let fixture: ComponentFixture<CompensationhomeComponent>;
+describe('EditCompRequestComponent', () => {
+  let component: EditCompRequestComponent;
+  let fixture: ComponentFixture<EditCompRequestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompensationhomeComponent ]
+      declarations: [ EditCompRequestComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompensationhomeComponent);
+    fixture = TestBed.createComponent(EditCompRequestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

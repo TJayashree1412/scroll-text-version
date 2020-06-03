@@ -2,25 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CompensationRoutingModule } from './compensation-routing.module';
-import { AccordionModule, Table, TableModule, TableItem, TableHeaderItem, NFormsModule, SearchModule, ButtonModule, DialogModule } from 'carbon-components-angular';
+import { CompHomeComponent } from './comp-home/comp-home.component';
 import { MyCompRequestsComponent } from './my-comp-requests/my-comp-requests.component';
-
+import { AccordionModule } from 'carbon-components-angular';
+import {Table, TableModule, TableModel, TableItem, TableHeaderItem } from 'carbon-components-angular';
+import { EditCompRequestComponent } from './edit-comp-request/edit-comp-request.component';
 
 @NgModule({
-  declarations: [MyCompRequestsComponent],
+  declarations: [CompHomeComponent, MyCompRequestsComponent, EditCompRequestComponent],
   imports: [
     CommonModule,
     CompensationRoutingModule,
     AccordionModule,
-    // Table,
-    // TableModule,
-    // TableItem,
-    // TableHeaderItem,
-    // NFormsModule,
-    // DialogModule,
-    // SearchModule,
-    // ButtonModule
-  ],
-  exports: [MyCompRequestsComponent]
+    TableModule
+  ]
 })
 export class CompensationModule { }

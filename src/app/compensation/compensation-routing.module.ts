@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CompHomeComponent } from './comp-home/comp-home.component';
 import { MyCompRequestsComponent } from './my-comp-requests/my-comp-requests.component';
-import { CompensationhomeComponent } from './compensationhome/compensationhome.component';
-
+import { EditCompRequestComponent } from './edit-comp-request/edit-comp-request.component';
 
 const routes: Routes = [
-  {path: 'myCompRequest',
-  component: MyCompRequestsComponent
-},
-{
-  path: 'compHome',
-  component: CompensationhomeComponent
-}
+  {path: 'compHome',
+  component: CompHomeComponent},
+  {
+    path: 'myCompRequests',
+    component: MyCompRequestsComponent
+  },
+  {
+    path: 'editCompRequest',
+    component: EditCompRequestComponent
+  }
 ];
 
 @NgModule({

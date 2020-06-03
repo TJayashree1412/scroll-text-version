@@ -15,7 +15,6 @@ import { LoginComponent } from './login/login.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 import { HomeComponent } from './home/home.component';
 import {LoginModule} from '@carbon/icons-angular';
-import { CompensationhomeComponent } from './compensation/compensationhome/compensationhome.component'
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { CompensationhomeComponent } from './compensation/compensationhome/compe
     HeaderComponent,
     LoginComponent,
     PrivacyNoticeComponent,
-    HomeComponent,
-    CompensationhomeComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +59,6 @@ import { CompensationhomeComponent } from './compensation/compensationhome/compe
 	LoginModule,
 	LogoutModule,
 	FadeModule
-	
   ],
   providers: [],
   bootstrap: [AppComponent]

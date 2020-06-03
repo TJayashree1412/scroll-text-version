@@ -1,139 +1,209 @@
 <div class="page-header">
-    <p>my comp requets works</p>
-    <ibm-accordion>
-        <ibm-accordion-item title="Compensation Requests - In Progress" expanded="true">
-            <ibm-table-container>
-                <p>Status : Draft</p>
-	            <ibm-table
+    <h1 ibmRow style="font-size: x-large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">My comp requests</h1>
+    <br ibmRow />
+    <br ibmRow />
+    <br ibmRow />
+    <button ibmButton="secondary" size="sm" style="align-self: flex-end;">
+        Create Compensation Request
+    </button>
+    <br />
+    <br/>
+    <ibm-accordion >
+        <ibm-accordion-item  title="Compensation Requests - In Progress" expanded="true">
+            <ibm-table-container >
+                
+                <ibm-table 
+	                [skeleton]="skeleton"
+	                [model]="skeleton ? skeletonModel : model"
+	                [showSelectionColumn]="false"
+                    [striped]="false">
+                </ibm-table>
+                <br/>
+                <p >Status : Draft</p>
+                <div *ngIf="modelDraft.totalDataLength>0; else display">
+	            <ibm-table 
 	                [skeleton]="skeleton"
 	                [model]="skeleton ? skeletonModel : modelDraft"
 	                [showSelectionColumn]="false"
                     [striped]="false">
+                    <tbody>
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status : Initiated</p>
-                
-                <ibm-table
+                <div *ngIf="modelInit.totalDataLength>0; else display">
+                <ibm-table *ngIf="modelInit!=null"
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelInit"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
+                <ng-template #display ><p class="no-data">No records.</p></ng-template>
+                <br ibmRow/>
                 <p>Status:Initiated-Required Information Added</p>
+                <div *ngIf="modelInitAddnInfoAdded.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelInitAddnInfoAdded"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status : Discuss</p>
+                <div *ngIf="modelDiscuss.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelDiscuss"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status : Discuss - Required Info added</p>
+                <div *ngIf="modelDiscussReqInfoAdded.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelDiscussReqInfoAdded"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status:Manager Accepted</p>
+                <div *ngIf="modelMgrAccepted.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelMgrAccepted"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status:Override Manager Acceptance</p>
+                <div *ngIf="modelMgrAcceptanceOverriden.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelMgrAcceptanceOverriden"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
             </ibm-table-container>
+            <ng-template #customTableItemTemplate let-data="data">
+                <a ibmLink routerLink="editCompRequest" routerLinkActive="active"  >{{data.empSerial}}</a>   
+             </ng-template>
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - Active" >
             <ibm-table-container>
+                <ibm-table 
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : model"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <br/>
                 <p>Status:Initiated-Required Information Added</p>
+                <div *ngIf="modelAddnInfoReq.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
 	                [model]="skeleton ? skeletonModel : modelAddnInfoReq"
 	                [showSelectionColumn]="false"
                     [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status:Compensation For Review</p>
+                <div *ngIf="modelForReview.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelForReview"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status : Discuss - Additional Info required</p>
+                <div *ngIf="modelDiscussAddnInfoReq.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelDiscussAddnInfoReq"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
-	            <!-- <ibm-pagination
-                    [model]="model"    
-                    (selectPage)="selectPage($event)">
-                </ibm-pagination> -->
+                </div>
             </ibm-table-container>
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - Completed" >
             <ibm-table-container>
+                <ibm-table 
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : model"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <br/>
                 <p>Status : Request Processed</p>
+                <div *ngIf="modelReqProcessed.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
 	                [model]="skeleton ? skeletonModel : modelReqProcessed"
 	                [showSelectionColumn]="false"
                     [striped]="false">
-	            </ibm-table>
-	            <!-- <ibm-pagination
-                    [model]="model"    
-                    (selectPage)="selectPage($event)"> 
-                </ibm-pagination> -->
+                </ibm-table>
+                </div>
             </ibm-table-container>
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - In-Active" >
             <ibm-table-container>
+                <ibm-table 
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : model"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <br/>
                 <p>Status : Rejected</p>
+                <div *ngIf="modelRejected.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
 	                [model]="skeleton ? skeletonModel : modelRejected"
 	                [showSelectionColumn]="false"
                     [striped]="false">
                 </ibm-table>
+                </div>
+                <br ibmRow/>
                 <p>Status : Archived</p>
+                <div *ngIf="modelArchived.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : modelArchived"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
-	            <!-- <ibm-pagination
-                    [model]="model"    
-                    (selectPage)="selectPage($event)"> 
-                </ibm-pagination> -->
+                </div>
             </ibm-table-container>
         </ibm-accordion-item>
         <ibm-accordion-item title="Other Compensation Requests" >
             <ibm-table-container>
+                <ibm-table 
+                [skeleton]="skeleton"
+                [model]="skeleton ? skeletonModel : model"
+                [showSelectionColumn]="false"
+                [striped]="false">
+                </ibm-table>
+                <br/>
+                <div *ngIf="modelOtherRecords.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
 	                [model]="skeleton ? skeletonModel : modelOtherRecords"
 	                [showSelectionColumn]="false"
                     [striped]="false">
-	            </ibm-table>
-	            <!-- <ibm-pagination
-                    [model]="model"    
-                    (selectPage)="selectPage($event)"> 
-                </ibm-pagination> -->
+                </ibm-table>
+                </div>
             </ibm-table-container>
-        </ibm-accordion-item>
+            </ibm-accordion-item>
     </ibm-accordion>
+     
 </div>
