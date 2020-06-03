@@ -2,5 +2,22 @@
     width: 100%;
     padding: 0.25%;
     text-align: center;
-    background-color: rgba(224,224,224,0.75)
+    // background-color: rgba(224,224,224,0.75)
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
+    color: black;
+    font-weight: 480;
+}
+
+.status{
+    color: cornflowerblue;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.bx--accordion__title{
+    font-size: 1.3rem;
+    font-weight: bolder;
+    line-height: 3rem;
 }

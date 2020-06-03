@@ -52,17 +52,32 @@ export class MyCompRequestsComponent implements OnInit {
   constructor(private router: Router, public compensationService: CompensationService) { }
 
   ngOnInit(): void {
-    this.model.header = [
-      new TableHeaderItem({data: 'Employee Serial'}),
-      new TableHeaderItem({data: 'Host Serial'}),
-      new TableHeaderItem({data: 'First Name'}),
-      new TableHeaderItem({data: 'Last Name'}),
-      new TableHeaderItem({data: 'Email ID'}),
-      new TableHeaderItem({data: 'Current Work Location City'}),
-      new TableHeaderItem({data: 'Current Zip Code'}),
-      new TableHeaderItem({data: 'Compensation Type'}),
-      new TableHeaderItem({data: 'Record Status'}),
-    ];
+    // this.model.header = [
+    //   new TableHeaderItem({data: 'Employee Serial'}),
+    //   new TableHeaderItem({data: 'Host Serial'}),
+    //   new TableHeaderItem({data: 'First Name'}),
+    //   new TableHeaderItem({data: 'Last Name'}),
+    //   new TableHeaderItem({data: 'Email ID'}),
+    //   new TableHeaderItem({data: 'Current Work Location City'}),
+    //   new TableHeaderItem({data: 'Current Zip Code'}),
+    //   new TableHeaderItem({data: 'Compensation Type'}),
+    //   new TableHeaderItem({data: 'Record Status'}),
+    // ];
+    this.setmodelParameters(this.model);
+    this.setmodelParameters(this.modelDraft);
+    this.setmodelParameters(this.modelInit);
+    this.setmodelParameters(this.modelInitAddnInfoAdded);
+    this.setmodelParameters(this.modelDiscuss);
+    this.setmodelParameters(this.modelDiscussReqInfoAdded);
+    this.setmodelParameters(this.modelMgrAccepted);
+    this.setmodelParameters(this.modelMgrAcceptanceOverriden);
+    this.setmodelParameters(this.modelAddnInfoReq);
+    this.setmodelParameters(this.modelForReview);
+    this.setmodelParameters(this.modelDiscussAddnInfoReq);
+    this.setmodelParameters(this.modelReqProcessed);
+    this.setmodelParameters(this.modelRejected);
+    this.setmodelParameters(this.modelArchived);
+    this.setmodelParameters(this.modelOtherRecords);
     this.pemUser = new HCAMDBUser();
     const listofRoles = sessionStorage.getItem('userdata');
     const json = JSON.parse(listofRoles);
@@ -78,6 +93,21 @@ export class MyCompRequestsComponent implements OnInit {
       console.log('comprecords: ', this.comprecords);
       this.sortCompRecords();
     });
+  }
+
+  setmodelParameters(model){
+    model.header = [
+        new TableHeaderItem({data: 'Employee Serial'}),
+        new TableHeaderItem({data: 'Host Serial'}),
+        new TableHeaderItem({data: 'First Name'}),
+        new TableHeaderItem({data: 'Last Name'}),
+        new TableHeaderItem({data: 'Email ID'}),
+        new TableHeaderItem({data: 'Current Work Location City'}),
+        new TableHeaderItem({data: 'Current Zip Code'}),
+        new TableHeaderItem({data: 'Compensation Type'}),
+        new TableHeaderItem({data: 'Record Status'}),
+      ];
+    // model.pageLength = 10;
   }
 
   prepareData(pagedata) {
@@ -249,7 +279,6 @@ export class MyCompRequestsComponent implements OnInit {
     this.modelArchived.data = this.prepareData(this.compArchived);
     this.modelOtherRecords.data = this.prepareData(this.otherCompRecords);
     this.modelInit.totalDataLength = this.compInit.length;
-    this.modelMgrAccepted.header = [];
   }
 
   createCompReq() {

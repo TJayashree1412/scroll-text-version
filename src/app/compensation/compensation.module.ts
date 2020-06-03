@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CompensationRoutingModule } from './compensation-routing.module';
 import { CompHomeComponent } from './comp-home/comp-home.component';
 import { MyCompRequestsComponent } from './my-comp-requests/my-comp-requests.component';
-import { AccordionModule } from 'carbon-components-angular';
+import { AccordionModule, ButtonModule } from 'carbon-components-angular';
 import {Table, TableModule, TableModel, TableItem, TableHeaderItem } from 'carbon-components-angular';
 import { EditCompRequestComponent } from './edit-comp-request/edit-comp-request.component';
 
@@ -14,7 +14,8 @@ import { EditCompRequestComponent } from './edit-comp-request/edit-comp-request.
     CommonModule,
     CompensationRoutingModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    ButtonModule,
   ]
 })
 export class CompensationModule { }

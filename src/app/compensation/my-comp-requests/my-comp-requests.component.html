@@ -2,24 +2,24 @@
     <h1 ibmRow style="font-size: x-large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">My comp requests</h1>
     <br ibmRow />
     <br ibmRow />
-    <br ibmRow />
-    <button ibmButton="secondary" size="sm" style="align-self: flex-end;">
-        Create Compensation Request
+    <button   ibmButton class="customButton" size="normal" type="submit" style="text-align: center;" >Create Compensation Request
+       
     </button>
     <br />
     <br/>
-    <ibm-accordion >
-        <ibm-accordion-item  title="Compensation Requests - In Progress" expanded="true">
+    <ibm-accordion style="color: darkcyan;">
+        <ibm-accordion-item  title="Compensation Requests - In Progress" expanded="true" >
             <ibm-table-container >
-                
+            <div *ngIf="modelDraft.totalDataLength===0 && modelInit.totalDataLength===0 && modelInitAddnInfoAdded.totalDataLength===0 && modelDiscuss.totalDataLength===0 && modelDiscussReqInfoAdded.totalDataLength===0 && modelMgrAccepted.totalDataLength===0 && modelMgrAcceptanceOverriden.totalDataLength===0">  
                 <ibm-table 
 	                [skeleton]="skeleton"
 	                [model]="skeleton ? skeletonModel : model"
 	                [showSelectionColumn]="false"
                     [striped]="false">
                 </ibm-table>
+            </div>  
                 <br/>
-                <p >Status : Draft</p>
+                <p class="status">Status : Draft</p>
                 <div *ngIf="modelDraft.totalDataLength>0; else display">
 	            <ibm-table 
 	                [skeleton]="skeleton"
@@ -30,7 +30,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status : Initiated</p>
+                <p class="status">Status : Initiated</p>
                 <div *ngIf="modelInit.totalDataLength>0; else display">
                 <ibm-table *ngIf="modelInit!=null"
                 [skeleton]="skeleton"
@@ -41,7 +41,7 @@
                 </div>
                 <ng-template #display ><p class="no-data">No records.</p></ng-template>
                 <br ibmRow/>
-                <p>Status:Initiated-Required Information Added</p>
+                <p class="status">Status:Initiated-Required Information Added</p>
                 <div *ngIf="modelInitAddnInfoAdded.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -51,7 +51,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status : Discuss</p>
+                <p class="status">Status : Discuss</p>
                 <div *ngIf="modelDiscuss.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -61,7 +61,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status : Discuss - Required Info added</p>
+                <p class="status">Status : Discuss - Required Info added</p>
                 <div *ngIf="modelDiscussReqInfoAdded.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -71,7 +71,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status:Manager Accepted</p>
+                <p class="status">Status:Manager Accepted</p>
                 <div *ngIf="modelMgrAccepted.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -81,7 +81,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status:Override Manager Acceptance</p>
+                <p class="status">Status:Override Manager Acceptance</p>
                 <div *ngIf="modelMgrAcceptanceOverriden.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -97,14 +97,16 @@
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - Active" >
             <ibm-table-container>
+                <div *ngIf="modelAddnInfoReq.totalDataLength===0 && modelForReview.totalDataLength===0 && modelDiscussAddnInfoReq.totalDataLength===0">
                 <ibm-table 
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : model"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
                 <br/>
-                <p>Status:Initiated-Required Information Added</p>
+                <p class="status">Status:Initiated-Required Information Added</p>
                 <div *ngIf="modelAddnInfoReq.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
@@ -114,7 +116,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status:Compensation For Review</p>
+                <p class="status">Status:Compensation For Review</p>
                 <div *ngIf="modelForReview.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -124,7 +126,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status : Discuss - Additional Info required</p>
+                <p class="status">Status : Discuss - Additional Info required</p>
                 <div *ngIf="modelDiscussAddnInfoReq.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -137,14 +139,16 @@
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - Completed" >
             <ibm-table-container>
+                <div *ngIf="modelReqProcessed.totalDataLength===0">
                 <ibm-table 
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : model"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
                 <br/>
-                <p>Status : Request Processed</p>
+                <p class="status">Status : Request Processed</p>
                 <div *ngIf="modelReqProcessed.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
@@ -157,14 +161,16 @@
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - In-Active" >
             <ibm-table-container>
+                <div *ngIf="modelRejected.totalDataLength===0 && modelArchived.totalDataLength===0 ">  
                 <ibm-table 
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : model"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
                 <br/>
-                <p>Status : Rejected</p>
+                <p class="status">Status : Rejected</p>
                 <div *ngIf="modelRejected.totalDataLength>0; else display">
 	            <ibm-table
 	                [skeleton]="skeleton"
@@ -174,7 +180,7 @@
                 </ibm-table>
                 </div>
                 <br ibmRow/>
-                <p>Status : Archived</p>
+                <p class="status">Status : Archived</p>
                 <div *ngIf="modelArchived.totalDataLength>0; else display">
                 <ibm-table
                 [skeleton]="skeleton"
@@ -187,12 +193,14 @@
         </ibm-accordion-item>
         <ibm-accordion-item title="Other Compensation Requests" >
             <ibm-table-container>
+                <div *ngIf="modelOtherRecords.totalDataLength===0">
                 <ibm-table 
                 [skeleton]="skeleton"
                 [model]="skeleton ? skeletonModel : model"
                 [showSelectionColumn]="false"
                 [striped]="false">
                 </ibm-table>
+                </div>
                 <br/>
                 <div *ngIf="modelOtherRecords.totalDataLength>0; else display">
 	            <ibm-table
@@ -205,5 +213,4 @@
             </ibm-table-container>
             </ibm-accordion-item>
     </ibm-accordion>
-     
 </div>
