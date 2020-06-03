@@ -9,8 +9,9 @@ import {Table, TableModule, TableModel, TableItem, TableHeaderItem } from 'carbo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditCompRequestComponent } from './edit-comp-request/edit-comp-request.component';
 import { RaiseCompRequestComponent } from './raise-comp-request/raise-comp-request.component';
+import { UpdateCompRequestComponent } from './update-comp-request/update-comp-request.component';
 @NgModule({
-  declarations: [CompHomeComponent, MyCompRequestsComponent, EditCompRequestComponent, RaiseCompRequestComponent],
+  declarations: [CompHomeComponent, MyCompRequestsComponent, EditCompRequestComponent, RaiseCompRequestComponent, UpdateCompRequestComponent],
   imports: [
     CommonModule,
     CompensationRoutingModule,

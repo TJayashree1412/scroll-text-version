@@ -17,3 +17,11 @@ $carbon--theme: $carbon--theme--g10;
 .bx--accordion__content { //changed from 25% to 0% by Jayashree for full width display
    padding-right: 0% ;
 }
+
+.bx--content{
+  // padding:1rem
+  padding-top: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+ }

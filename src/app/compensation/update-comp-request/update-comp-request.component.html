@@ -1,0 +1,1085 @@
+<div ibmGrid class="page-header">
+    <div ibmRow >
+        <div ibmCol [columnNumbers]="{'lg': 16}">
+            <p><span style="font-weight:bold;font-size:xx-large;color:#4178BE;">My comp requests</span></p>
+        </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'lg': 16}">
+          <!-- <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">My comp requests</span></p>
+          <br> -->
+          <p><span style="font-size: medium;">Create compensation request</span></p>
+          <br>
+          <p><span style="font-weight:bold;font-size:small;color:red;">IBM Confidential</span></p>
+          <br>
+          <p><span style="font-size:small;">Required fields are marked with an asterisk (*) and must be filled in to complete the form.</span></p>
+          <br>
+      </div>
+  </div>
+    <form [formGroup]="UpdateEmpForm" (ngSubmit)="onSubmit()">
+    <div ibmRow >
+        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+            <hr>
+            <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Employee Information</span></p>
+            <hr>
+        </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Employee Serial:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <input ibmText formControlName = "empSerial" style="width: auto;">
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Employee Home Country:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <input ibmText formControlName = "empHomeCountry" style="width: auto;">
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Assignment PMP Seat ID:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <input ibmText formControlName = "pmpSeatID" style="width: auto;">
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Please indicate type of Visa employee is holding ?:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <input ibmText formControlName = "empVisa" style="width: auto;">
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Compensation Type:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <div style="width: 300px">
+            <ibm-dropdown placeholder="Select" formControlName = "compType1" >
+              <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <label style="font-size:medium;font-weight: bold;">Visa Status:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 6}">
+        <ibm-label>
+          <fieldset class="bx--fieldset">
+            <!-- <legend class="bx--label">{{label}}</legend> -->
+            <!-- <ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)"> -->
+              <ibm-radio-group aria-label="radiogroup" formControlName = "visaStatus">
+              <!-- <ibm-radio value="radio" [checked]="true">zero</ibm-radio> -->
+              <!-- <ibm-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled">{{radio.num}}</ibm-radio> -->
+              <ibm-radio *ngFor="let radio of visaStatusRadio" [value]="radio.location" >{{radio.location}}</ibm-radio>
+            </ibm-radio-group>
+          </fieldset>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 2}"></div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <label style="font-size:medium;font-weight: bold;">Will the employee be in the US greater than 89 days ?:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <fieldset class="bx--fieldset">
+            <!-- <legend class="bx--label">{{label}}</legend> -->
+            <!-- <ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)"> -->
+              <ibm-radio-group aria-label="radiogroup" formControlName = "emplt89">
+              <!-- <ibm-radio value="radio" [checked]="true">zero</ibm-radio> -->
+              <!-- <ibm-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled">{{radio.num}}</ibm-radio> -->
+              <ibm-radio *ngFor="let radio of emplt89Radio" [value]="radio.location" >{{radio.location}}</ibm-radio>
+            </ibm-radio-group>
+          </fieldset>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow >
+        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+            <hr>
+            <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Band, Job Family, JRSS & PMR Details</span></p>
+            <hr>
+        </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Home Country Band:*</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <div style="width: 300px">
+            <ibm-dropdown placeholder="Select" formControlName = "bandLevel" >
+              <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Home Country JRSS:*</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        Need to check This...
+      </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Home Country Job Family / Pay Grade:*</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <div style="width: 300px">
+            <ibm-dropdown placeholder="Select" formControlName = "currJobFamily" >
+              <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+            </ibm-dropdown>
+          </div>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Proposed JRSS in US:*</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        Need to check This...
+      </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">IBM Global PMR:*</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label>
+          <input ibmText formControlName = "ibmGlobalPmr" style="width: auto;">
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <br>
+    <div ibmRow >
+        <!-- <div ibmCol [columnNumbers]="{'lg': 16}" class="bx--no-gutter"> -->
+          <div ibmCol [columnNumbers]="{'lg': 16}">
+            <ibm-tabs type="container" ariaLabel="Tab navigation">
+                <!-- START Employee Info TAB -->
+                <ibm-tab heading="Employee Information">
+                    <!-- <div ibmGrid class="bx--grid--no-gutter bx--grid--full-width"> -->
+                      <div ibmGrid >
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+                          <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Employee Information</span></p>
+                          <hr>
+                        </div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Employee Serial:</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "empSerial" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Employee Home Country:</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "empHomeCountry" style="width: auto;">
+                        </ibm-label>
+                        </div>
+                      </div>
+                      <div ibmRow style="padding-top: 15px;">
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Full Name(First/Middle/Last):</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">First Name</label>
+                            <input ibmText formControlName = "firstName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Middle Name</label>
+                            <input ibmText formControlName = "middleName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Last Name</label>
+                            <input ibmText formControlName = "lastName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                      </div>
+                      <div ibmRow style="padding-top: 15px;">
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Name as on Passport:</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">First Name</label>
+                            <input ibmText formControlName = "ppFirstName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Middle Name</label>
+                            <input ibmText formControlName = "ppMiddleName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Last Name</label>
+                            <input ibmText formControlName = "ppLastName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Employee Email Id:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "empEmailId" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <br><br>
+                          (e.g., joe@us.ibm.com)
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Current Designation/Job Title:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "jobTitle" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <!-------------------------------  Education And Trainigs ---------------------------------->
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+                          <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Relevant IT Experience, Education, And Training</span></p>
+                          <hr>
+                        </div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Education & Training:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "eduTraining" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">IT Industry Field of Specialization:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <textarea ibmTextArea formControlName = "itExeperience" cols="50" rows="2" ></textarea>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Total number of years experience:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "yearsOfExp" size="5" maxlength="4" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Total number of months experience:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "monthsOfExp" size="5" maxlength="4" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <label style="font-size:medium;font-weight: bold;">Top 5 Primary Skills in IT and/or Project Management with number of years experience for each skill:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "itprojSkill1" maxlength="200" style="width: auto;padding-top: 20px;" >
+                          </ibm-label>
+                          <ibm-label>
+                            <input ibmText formControlName = "itprojSkill4" maxlength="200" style="width: auto;padding-top: 20px;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "itprojSkill2" maxlength="200" style="width: auto;">
+                          </ibm-label>
+                          <ibm-label>
+                            <input ibmText formControlName = "itprojSkill5" maxlength="200" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "itprojSkill3" maxlength="200" style="width: auto;">
+                            <!-- <input ibmText formControlName = "itprojSkill1" maxlength="200" style="width: auto;"> -->
+                          </ibm-label>
+                        </div>
+                      </div>
+                    </div>
+                  </ibm-tab>
+                  <!-- END EMPLOYEE INFO TAB -->
+                <!-- START Targeted US Project Details TAB -->
+                <ibm-tab heading="Targeted US Project Details">
+                    <div ibmGrid >
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+                          <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Targeted US Project Details</span></p>
+                          <hr>
+                        </div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">IBM Business Unit of Project:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <div style="width: 300px">
+                              <ibm-dropdown placeholder="Select" formControlName = "bussUnit" >
+                                <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                              </ibm-dropdown>
+                            </div>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Home Country People Manager Name:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "mgrName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Home Country People Manager Email:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "mgrEmail" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <br>(e.g., joe@us.ibm.com)
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">HUS HCAM People Manager Name:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "usPemName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">US HCAM People Manager Email:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "usPemEmail" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <br>(e.g., joe@us.ibm.com)
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Requesting/Project Manager Name:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "reqPMName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Requesting/Project Manager Email:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "reqPMEmail" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <br>(e.g., joe@us.ibm.com)
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">IBM US Account Manager Name for the Proposed Project:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "usAccntMgr" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">IBM US Account Manager Email for the Proposed Project:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "usAccntprpdProjEmail" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <br>(e.g., joe@us.ibm.com)
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Employees proposed assignment Start Date: (MM/DD/YYYY)</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <ibm-date-picker formControlName = "prosdStartDate" ></ibm-date-picker>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Employees proposed assignment End Date: (MM/DD/YYYY)</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <ibm-date-picker formControlName = "prosdEndDate" ></ibm-date-picker>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Anticipated duration of stay in the U.S.(New and US Transfer Employees):*</label>
+                            <br>(In months)
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "ancptDuration" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Proposed Role in the US Project:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "prpdRole" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Proposed Designation/Job Title in the US project:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "prpdJobTitle" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">Host Country Growth Platform:*</label>
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "growthPlatform" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                      <div ibmRow >
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label><br>
+                            <label style="font-size:medium;font-weight: bold;">End Client Name:*</label>
+                            <br>(Required to generate offer letter)
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          <ibm-label>
+                            <input ibmText formControlName = "clientName" style="width: auto;">
+                          </ibm-label>
+                        </div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                      </div>
+                    </div>
+                  </ibm-tab>
+                  <!-- END Targeted US Project Details TAB -->
+                <!-- START Location Details TAB -->
+                  <ibm-tab heading="Location Details">
+                    <div ibmGrid >
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+                            <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Location Details</span></p>
+                            <hr>
+                            <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Actual Physical Work Address (Where Employee will work in US) </span></p>
+                          </div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Street Address 1:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "ustadd1" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Street Address 2 </label>
+                              <br><span style="font-size:small;font-weight: bold;">(continued):</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "ustadd2" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Work Address:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <fieldset class="bx--fieldset">
+                                <!-- <legend class="bx--label">{{label}}</legend> -->
+                                <!-- <ibm-radio-group aria-label="radiogroup" [(ngModel)]="radio" (change)="onChange($event)"> -->
+                                  <ibm-radio-group aria-label="radiogroup" formControlName = "workLocation">
+                                  <!-- <ibm-radio value="radio" [checked]="true">zero</ibm-radio> -->
+                                  <!-- <ibm-radio *ngFor="let radio of manyRadios" [value]="radio.num" [disabled]="radio.disabled">{{radio.num}}</ibm-radio> -->
+                                  <ibm-radio *ngFor="let radio of workLocationRadio" [value]="radio.location" >{{radio.location}}</ibm-radio>
+                                </ibm-radio-group>
+                              </fieldset>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Zip Code:*</label>
+                              <br><span style="font-size:small;">(5 digits only)</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "ustzip" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">State Abbrev.:*</label>
+                              <br><span style="font-size:small;">(2 letters only)</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <div style="width: 300px">
+                                <ibm-dropdown placeholder="Select" formControlName = "uststate" >
+                                  <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                                </ibm-dropdown>
+                              </div>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">County:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <div style="width: 300px">
+                                <ibm-dropdown placeholder="Select" formControlName = "ustcounty" >
+                                  <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                                </ibm-dropdown>
+                              </div>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">City:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <div style="width: 300px">
+                                <ibm-dropdown placeholder="Select" formControlName = "ustcity" >
+                                  <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                                </ibm-dropdown>
+                              </div>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">IBM Work Location Campus</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <div style="width: 300px">
+                                <ibm-dropdown placeholder="Select" formControlName = "usWorkLocCampus" >
+                                  <ibm-dropdown-list [items]="items"></ibm-dropdown-list>
+                                </ibm-dropdown>
+                              </div>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Phone No.:</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "ustphone" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <!-- ******************************************CURRENT WORK LOCATION************************************** -->
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+                            <hr>
+                            <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Current Work Location </span></p>
+                          </div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Street Address 1:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "uswadd1" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Street Address 2 </label>
+                              <br><span style="font-size:small;font-weight: bold;">(continued):</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "uswadd2" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Zip/Pin Code:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "uswzip" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">State Abbrev.:*</label>
+                              <br><span style="font-size:small;">(2 letters only)</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "uswState" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 6}">
+                            <br><span style="font-size:small;">(e.g.,For State 'KARNATAKA' enter 'KA') </span>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 2}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">City:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "uswcity" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Phone No.:</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "uswphone" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <!-- ******************************************HOME ADDRESS********************************************* -->
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+                            <hr>
+                            <p><span style="font-weight:bold;font-size: medium;color: #4178BE;">Home address </span></p>
+                          </div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Street Address 1:* </label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "inadd1" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Street Address 2 </label>
+                              <br><span style="font-size:small;">(continued):</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "inadd2" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Zip/Pin Code:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "inzip" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">State Abbrev.:*</label>
+                              <br><span style="font-size:small;">(2 letters only)</span>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "cwState" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 6}">
+                            <br><span style="font-size:small;">(e.g.,For State 'KARNATAKA' enter 'KA')</span>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 2}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">City:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "cwcity" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Country:*</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "cwcountry" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                        <div ibmRow >
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label><br>
+                              <label style="font-size:medium;font-weight: bold;">Phone No.:</label>
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                            <ibm-label>
+                              <input ibmText formControlName = "inphone" style="width: auto;">
+                            </ibm-label>
+                          </div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+                        </div>
+                    </div>
+                  </ibm-tab>
+                  <!-- END Location Details TAB -->
+            </ibm-tabs>
+        </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+        <hr>
+      </div>
+    </div>
+    <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;">Comments:</label>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
+        <ibm-label>
+          <textarea ibmTextArea formControlName = "comment" cols="60" rows="5" ></textarea>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+    <div ibmRow style="padding-top: 20px;">
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
+        <ibm-label>
+          <button ibmButton="secondary">Save</button>&nbsp;
+          <button ibmButton>Submit</button>&nbsp;
+          <button ibmButton="secondary">Close</button>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+  </form>
+</div>
