@@ -282,7 +282,7 @@ export class MyCompRequestsComponent implements OnInit {
   }
 
   createCompReq() {
-    this.router.navigate(['/raiseCompRequest']);
+    this.router.navigate(['/comp/raiseCompRequest']);
   }
 
 }

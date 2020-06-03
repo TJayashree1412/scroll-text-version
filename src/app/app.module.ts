@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { UIShellModule, SideNav, SideNavMenu, GridModule, ListModule, TabsModule, TilesModule, InputModule, ButtonModule, TextInput,ContentSwitcherModule, SideNavModule, RadioModule, CheckboxModule, ToggleModule, DropdownModule, FileUploaderModule, LoadingModule, DatePickerModule, ModalModule, TableModule, PaginationModule, AccordionModule } from 'carbon-components-angular';
+import { UIShellModule, SideNav, SideNavMenu, GridModule, ListModule, TabsModule, TilesModule, InputModule, ButtonModule, TextInput,ContentSwitcherModule, SideNavModule, RadioModule, CheckboxModule, ToggleModule, DropdownModule, FileUploaderModule, LoadingModule, DatePickerModule, ModalModule, TableModule, PaginationModule, AccordionModule, SelectModule } from 'carbon-components-angular';
 
 import {NotificationModule, AppSwitcherModule, UserAvatarModule, AddModule, WarningModule, FadeModule, LogoutModule} from '@carbon/icons-angular/'
 import { CommonModule } from '@angular/common';
@@ -62,7 +62,8 @@ import { UpdateCompRequestComponent } from './update-comp-request/update-comp-re
 	WarningModule,
 	LoginModule,
 	LogoutModule,
-	FadeModule
+	FadeModule,
+	SelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
