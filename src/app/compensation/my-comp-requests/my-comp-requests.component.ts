@@ -116,11 +116,11 @@ export class MyCompRequestsComponent implements OnInit {
     const newData = [];
     for (const datum of pagedata) {
     console.log('inside for loop: ', datum, 'datum vlaues: ', datum.resource);
-    newData .push([new TableItem({ data: datum.empSerial}),
+    newData .push([new TableItem({ data:
+      {empSerial: datum.empSerial , compId: datum.compId, link: 'comp/editCompRequest'},
+      template: this.customTableItemTemplate}),
       // data: {name: datum.resource , resourceId: datum.resourceId, link: 'repos/editIBMI'}, template: this.customTableItemTemplate}),
-      new TableItem({ data:
-        {empSerial: datum.hostCountrySerial , compId: datum.compId, link: 'comp/editCompRequest'},
-        template: this.customTableItemTemplate}),
+      new TableItem({ data: datum.hostCountrySerial}),
       new TableItem({ data: datum.firstName }),
       new TableItem({ data: datum.lastName }),
       new TableItem({ data: datum.emailID}),

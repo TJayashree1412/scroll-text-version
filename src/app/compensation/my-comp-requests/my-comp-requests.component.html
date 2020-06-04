@@ -1,7 +1,6 @@
 <div class="page-header">
-    <h1 ibmRow style="font-size: x-large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">My comp requests</h1>
-    <br ibmRow />
-    <br ibmRow />
+    <h1 ibmRow id="heading">My comp requests</h1>
+ 
     <div style="margin-left: 82%;">
     <button   ibmButton="tertiary" class="customButton" size="normal" type="submit" style="padding-left: 8%; padding-right: 8%; font-weight: bold; border-width: 2px;" (click)="createCompReq()" >
         Create Compensation Request
@@ -92,10 +91,10 @@
                 [striped]="false">
                 </ibm-table>
                 </div>
+                <ng-template #customTableItemTemplate let-data="data">
+                    <a ibmLink routerLink="../editCompRequest" routerLinkActive="active"  >{{data.empSerial}}</a>   
+                 </ng-template>
             </ibm-table-container>
-            <ng-template #customTableItemTemplate let-data="data">
-                <a ibmLink routerLink="editCompRequest" routerLinkActive="active"  >{{data.empSerial}}</a>   
-             </ng-template>
         </ibm-accordion-item>
         <ibm-accordion-item title="Compensation Requests - Active" >
             <ibm-table-container>
