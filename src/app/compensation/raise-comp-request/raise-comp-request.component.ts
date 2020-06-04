@@ -30,7 +30,8 @@ export class RaiseCompRequestComponent implements OnInit {
   empvisatype: new FormControl(null,[Validators.required]),
   comptypselect:new FormControl(null,[Validators.required]),
   countryselect:new FormControl(null,[Validators.required]),
-  HomeorHost:new FormControl(null,[Validators.required]),
+  homeorHost:new FormControl(null,[Validators.required]),
+  visaStatus:new FormControl(null,[Validators.required]),
   us89daysstay:new FormControl('Yes')
   
   });
@@ -97,24 +98,31 @@ export class RaiseCompRequestComponent implements OnInit {
   this.formSubmitAttempt = false;
   }
 
-  changeCompensationType(e) {
-    console.log(e.value)
-    this.EmpInfoForm.value.comptypselect.setValue(e.target.value, {
-      onlySelf: true
-    })
+   changeCompensationType(event:any) {
+    this.EmpInfoForm.value.comptypselect=event.target.value;
   }
   
   changeHomeorHost(e) {
-    console.log(e.value)
+    console.log(e.value);
     /*this.EmpInfoForm.value.comptypselect.setValue(e.target.value, {
       onlySelf: true
     })*/
+  }
+  changeVisaStatus(e){
+    console.log(e.value);
+  }
+  changeStayinUS(e){
+    console.log(e.value);
   }
 
   changeFlog(){
     console.log('FLOG: '+this.flog);
     this.flog=!this.flog;
     console.log('FLOG: '+this.flog);
+  }
+
+  onClose(){
+    this.router.navigate(['/comp/myCompRequests']);
   }
   
 }

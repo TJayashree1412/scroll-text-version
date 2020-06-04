@@ -39,13 +39,26 @@
             </div>
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
                 <ibm-label>
-                  <input ibmText formControlName = "empSerial" id="empserial" style="width: auto;">
+                  <input ibmText formControlName = "empserial" id="empserial" style="width: auto;">
                 </ibm-label>
             </div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>    
+             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+            <div *ngIf="!!EmpInfoForm.value.comptypselect">
+              <div *ngIf="EmpInfoForm.value.comptypselect !='New Employee'" > 
+                <ibm-label>
+                      <ibm-radio-group aria-label="radiogroup" (change)="changeHomeorHost($event)">
+                        <ibm-radio value="Home" formControlName="homeorHost">Home</ibm-radio>
+                        <ibm-radio value="Host" formControlName="homeorHost" >Host</ibm-radio>
+                
+                      </ibm-radio-group>
+                </ibm-label>
+              </div>
+            </div>
+          </div>
+               
         </div>
-        <div *ngIf="!!EmpInfoForm.value.comptypselect">
+    <!--    <div *ngIf="!!EmpInfoForm.value.comptypselect">
           <div *ngIf="EmpInfoForm.value.comptypselect.value!='New Employee'" > 
             <div ibmRow >
               <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
@@ -57,9 +70,11 @@
                   </ibm-radio-group>
                 </ibm-label>
               </div>
+              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+                <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
             </div>
           </div>
-        </div>
+        </div> -->
         
         
             
@@ -108,7 +123,7 @@
                </ibm-label>
             </div>
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-               <ibm-label>
+               <ibm-label><br>
                <ibm-select id="empvisatype" formControlName="empvisatype" > 
                 <option  value="Select">---Select---</option>
                 <option *ngFor="let visatype of createComp.visaType | keyvalue" [ngValue]=visatype>
@@ -121,7 +136,7 @@
              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
        </div>
        <div *ngIf="!!EmpInfoForm.value.comptypselect">
-        <div *ngIf="EmpInfoForm.value.comptypselect.value=='New Employee'" > 
+        <div *ngIf="EmpInfoForm.value.comptypselect =='New Employee'" > 
           <div ibmRow >
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
               <ibm-label><br>
@@ -131,13 +146,15 @@
           </div>
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
               <ibm-label>
-                <ibm-radio-group aria-label="radiogroup" (change)="changeHomeorHost($event)">
-                  <ibm-radio value="Home" formControlName="HomeorHost" >Applying for Visa</ibm-radio>
-                  <ibm-radio value="Host" formControlName="HomeorHost" [checked]="true" >Currently Holding Visa</ibm-radio>
+                <ibm-radio-group aria-label="radiogroup" (change)="changeVisaStatus($event)">
+                  <ibm-radio value="Home" formControlName="visaStatus" >Applying for Visa</ibm-radio>
+                  <ibm-radio value="Host" formControlName="visaStatus" [checked]="true" >Currently Holding Visa</ibm-radio>
           
                 </ibm-radio-group>
               </ibm-label>
             </div>
+            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
           </div>
         </div>
       </div>
@@ -149,21 +166,23 @@
           </ibm-label>
       </div>
         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-          <ibm-label>
-            <ibm-radio-group aria-label="radiogroup" (change)="changeHomeorHost($event)">
-              <ibm-radio value="Home" formControlName="HomeorHost" [checked]="true">Yes</ibm-radio>
-              <ibm-radio value="Host" formControlName="HomeorHost" >No</ibm-radio>
+          <ibm-label><br>
+            <ibm-radio-group aria-label="radiogroup" (change)="changeStayinUS($event)">
+              <ibm-radio value="Home" formControlName="us89daysstay" [checked]="true">Yes</ibm-radio>
+              <ibm-radio value="Host" formControlName="us89daysstay" >No</ibm-radio>
       
             </ibm-radio-group>
           </ibm-label>
         </div>
+        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
       </div>
        <div ibmRow style="padding-top: 20px;">
         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
           <ibm-label>
             <button ibmButton>Submit</button>&nbsp;
-            <button ibmButton="secondary">Close</button>
+            <button ibmButton="secondary" (click)="onClose()">Close</button>
           </ibm-label>
         </div>
         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
