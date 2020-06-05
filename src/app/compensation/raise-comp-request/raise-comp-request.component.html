@@ -3,11 +3,21 @@
         <div ibmCol [columnNumbers]="{'lg': 16}">
             <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Create compensation request</span></p>
             <br>
+            <p><span style="font-weight:bold;font-size:small;color:red;">IBM Confidential</span></p>
+          <br>
+          <p><span style="font-size:small;">Required fields are marked with an asterisk (*) and must be filled in to complete the form.</span></p>
+          <br>
          <!--   <p><span style="font-size: small;">Create compensation request</span></p> -->
         </div>
     </div> 
     <form [formGroup]="EmpInfoForm"  (ngSubmit)="onSubmit()">
-      
+      <div ibmRow >
+        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+            <hr>
+            <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Employee Information</span></p>
+            <hr>
+        </div>
+    </div>
         <div ibmRow >
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
          <!--   <label  for="comptypselect">Compensation Type:<span class="ibm-required">*</span></label>-->
@@ -16,16 +26,18 @@
             </ibm-label>
           </div>
          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                   <ibm-label>
-                    <ibm-select 
-                      id="comptypselect"  formControlName="comptypselect" (change)="changeCompensationType($event)"> 
+                   <!--adding-->
+                   <br>
+                    <select style="width: 190px"
+                      id="comptypselect"  formControlName="comptypselect"  (change)="changeCompensationType($event)"> 
                         <option  value="">---Select---</option>
                         <option  *ngFor="let compType of createComp.compensationType | keyvalue" [ngValue]=compType>
                             {{compType.value}}
                         </option>
-                     </ibm-select> 
-                   </ibm-label>
+                     </select> 
+                   
            </div>  
+
           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>     
       </div>        
@@ -89,14 +101,16 @@
                </ibm-label>
             </div>
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-               <ibm-label>    
-               <ibm-select id="countryselect" formControlName="countryselect" > 
+            <!--   <ibm-label>    -->
+              <!--adding-->
+              <br>
+               <select style="width: 190px" id="countryselect" formControlName="countryselect" > 
                 <option  value="">---Select---</option>
                 <option *ngFor="let countryCode of createComp.countryCodeMap | keyvalue" [ngValue]=countryCode>
                     {{countryCode.value}}
                 </option>
-               </ibm-select> 
-               </ibm-label>
+               </select> 
+            <!--   </ibm-label> -->
              </div>
              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
@@ -123,14 +137,15 @@
                </ibm-label>
             </div>
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-               <ibm-label><br>
-               <ibm-select id="empvisatype" formControlName="empvisatype" > 
+              <!-- <ibm-label><br> -->
+                <br>
+               <select  style="width: 190px" id="empvisatype" formControlName="empvisatype" > 
                 <option  value="Select">---Select---</option>
                 <option *ngFor="let visatype of createComp.visaType | keyvalue" [ngValue]=visatype>
                     {{visatype.value}}
                 </option>
-                </ibm-select> 
-               </ibm-label>
+                </select> 
+              <!-- </ibm-label> -->
              </div>  
              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
