@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-comp-request',
@@ -11,8 +12,13 @@ export class UpdateCompRequestComponent implements OnInit {
   workLocationRadio:any;
   visaStatusRadio:any;
   emplt89Radio:any;
+  empData:{}=null;
 
-  constructor() { }
+  constructor(private router: Router) { 
+    console.log("Constructor() called...!")
+    console.log(this.router.getCurrentNavigation().extras.state);
+    this.empData = this.router.getCurrentNavigation().extras.state;
+  }
 
   ngOnInit(): void {
     this.items = [
@@ -33,6 +39,7 @@ export class UpdateCompRequestComponent implements OnInit {
       { location: "Yes" },
 			{ location: "No" },
     ];
+    this.getEmployeeDetails();
   }
 
   UpdateEmpForm = new FormGroup({
@@ -111,6 +118,11 @@ export class UpdateCompRequestComponent implements OnInit {
     // selected(selectedValue){
     //   console.log("selected(selectedValue): "+JSON.stringify(selectedValue));
     // }
+
+    getEmployeeDetails(){
+      console.log('getEmployeeDetails() Starts---- ');
+      console.log('getEmployeeDetails():--- '+JSON.stringify(this.empData))
+    }
 
   onSubmit(){
     console.log("Update comp onSubmit() Starts");
