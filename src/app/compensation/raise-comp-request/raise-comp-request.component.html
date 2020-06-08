@@ -1,210 +1,253 @@
 <div ibmGrid class="page-header">
+  <div ibmRow >
+      <div ibmCol [columnNumbers]="{'lg': 16}">
+          <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Create compensation request</span></p>
+          <br>
+          <p><span style="font-weight:bold;font-size:small;color:red;">IBM Confidential</span></p>
+        <br>
+        <p><span style="font-size:small;">Required fields are marked with an asterisk (*) and must be filled in to complete the form.</span></p>
+        <br>
+       <!--   <p><span style="font-size: small;">Create compensation request</span></p> -->
+      </div>
+  </div> 
+  <form [formGroup]="EmpInfoForm"  (ngSubmit)="onSubmit()">
     <div ibmRow >
-        <div ibmCol [columnNumbers]="{'lg': 16}">
-            <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Create compensation request</span></p>
-            <br>
-            <p><span style="font-weight:bold;font-size:small;color:red;">IBM Confidential</span></p>
-          <br>
-          <p><span style="font-size:small;">Required fields are marked with an asterisk (*) and must be filled in to complete the form.</span></p>
-          <br>
-         <!--   <p><span style="font-size: small;">Create compensation request</span></p> -->
-        </div>
-    </div> 
-    <form [formGroup]="EmpInfoForm"  (ngSubmit)="onSubmit()">
+      <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
+          <hr>
+          <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Employee Information</span></p>
+          <hr>
+      </div>
+  </div>
       <div ibmRow >
-        <div ibmCol [columnNumbers]="{'lg': 16}" class="hr_width">
-            <hr>
-            <p><span style="font-weight:bold;font-size: larger;color: #4178BE;">Employee Information</span></p>
-            <hr>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+       <!--   <label  for="comptypselect">Compensation Type:<span class="ibm-required">*</span></label>-->
+          <ibm-label><br>
+          <label style="font-size:medium;font-weight: bold;"  for="comptypselect">Compensation Type:</label>
+          </ibm-label>
         </div>
-    </div>
-        <div ibmRow >
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-         <!--   <label  for="comptypselect">Compensation Type:<span class="ibm-required">*</span></label>-->
-            <ibm-label><br>
-            <label style="font-size:medium;font-weight: bold;"  for="comptypselect">Compensation Type:</label>
-            </ibm-label>
-          </div>
-         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                   <!--adding-->
-                   <br>
-                    <select style="width: 190px"
-                      id="comptypselect"  formControlName="comptypselect"  (change)="changeCompensationType($event)"> 
-                        <option  value="">---Select---</option>
-                        <option  *ngFor="let compType of createComp.compensationType | keyvalue" [ngValue]=compType>
-                            {{compType.value}}
-                        </option>
-                     </select> 
-                   
-           </div>  
+       <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+                 <!--adding-->
+                 <br>
+                  <select style="width: 190px"
+                    id="comptypselect"  formControlName="comptypselect"  (change)="changeCompensationType($event)"> 
+                      <option  value="">---Select---</option>
+                      <option  *ngFor="let compType of createComp.compensationType | keyvalue" [ngValue]=compType>
+                          {{compType.value}}
+                      </option>
+                   </select> 
+                   <div *ngIf="((EmpInfoForm.get('comptypselect').invalid && EmpInfoForm.get('comptypselect').touched) ||
+               (EmpInfoForm.get('comptypselect').untouched && this.formSubmitAttempt))">
+              <div class="error-msg" *ngIf="EmpInfoForm.get('comptypselect').errors.required">
+                  Compensation Type is required
+              </div>
+            </div>
+                 
+         </div>  
 
-          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
-           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>     
-      </div>        
-                        
-         <div ibmRow >
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                <ibm-label><br>
-                    <label style="font-size:medium;font-weight: bold;">Employee Serial (6 digits/chars):*
-                    </label>
-                </ibm-label>
-            </div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                <ibm-label>
-                  <input ibmText formControlName = "empserial" id="empserial" style="width: auto;">
-                </ibm-label>
-            </div>
-             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-            <div *ngIf="!!EmpInfoForm.value.comptypselect">
-              <div *ngIf="EmpInfoForm.value.comptypselect !='New Employee'" > 
-                <ibm-label>
-                      <ibm-radio-group aria-label="radiogroup" (change)="changeHomeorHost($event)">
-                        <ibm-radio value="Home" formControlName="homeorHost">Home</ibm-radio>
-                        <ibm-radio value="Host" formControlName="homeorHost" >Host</ibm-radio>
-                
-                      </ibm-radio-group>
-                </ibm-label>
-              </div>
-            </div>
-          </div>
-               
-        </div>
-    <!--    <div *ngIf="!!EmpInfoForm.value.comptypselect">
-          <div *ngIf="EmpInfoForm.value.comptypselect.value!='New Employee'" > 
-            <div ibmRow >
-              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                <ibm-label>
-                  <ibm-radio-group aria-label="radiogroup" (change)="changeHomeorHost($event)">
-                    <ibm-radio value="Home" formControlName="HomeorHost" [checked]="true">Home</ibm-radio>
-                    <ibm-radio value="Host" formControlName="HomeorHost" >Host</ibm-radio>
-            
-                  </ibm-radio-group>
-                </ibm-label>
-              </div>
-              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
-                <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
-            </div>
-          </div>
-        </div> -->
-        
-        
-            
-            
-            
-        
-    
-          <div ibmRow >
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-               <ibm-label><br>
-               <label style="font-size:medium;font-weight: bold;" for="countryselect">Employee Home Country:</label>
-               </ibm-label>
-            </div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-            <!--   <ibm-label>    -->
-              <!--adding-->
-              <br>
-               <select style="width: 190px" id="countryselect" formControlName="countryselect" > 
-                <option  value="">---Select---</option>
-                <option *ngFor="let countryCode of createComp.countryCodeMap | keyvalue" [ngValue]=countryCode>
-                    {{countryCode.value}}
-                </option>
-               </select> 
-            <!--   </ibm-label> -->
-             </div>
-             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-        </div>
-        <div ibmRow >
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                <ibm-label><br>
-                    <label style="font-size:medium;font-weight: bold;">Assignment PMP Seat ID:</label>
-                </ibm-label>
-            </div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-                <ibm-label>
-                  <input ibmText id="pmpseatid" formControlName = "pmpseatid" style="width: auto;">
-                </ibm-label>
-            </div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-            
-        </div>
-        <div ibmRow >
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-               <ibm-label><br>
-               <label style="font-size:medium;font-weight: bold;" for="empvisatype">Please indicate type of Visa employee is holding ?:</label>
-               </ibm-label>
-            </div>
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-              <!-- <ibm-label><br> -->
-                <br>
-               <select  style="width: 190px" id="empvisatype" formControlName="empvisatype" > 
-                <option  value="Select">---Select---</option>
-                <option *ngFor="let visatype of createComp.visaType | keyvalue" [ngValue]=visatype>
-                    {{visatype.value}}
-                </option>
-                </select> 
-              <!-- </ibm-label> -->
-             </div>  
-             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-       </div>
-       <div *ngIf="!!EmpInfoForm.value.comptypselect">
-        <div *ngIf="EmpInfoForm.value.comptypselect =='New Employee'" > 
-          <div ibmRow >
-            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>     
+    </div>        
+                      
+       <div ibmRow >
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
               <ibm-label><br>
-                  <label style="font-size:medium;font-weight: bold;">Visa Status:*
+                  <label style="font-size:medium;font-weight: bold;">Employee Serial (6 digits/chars):*
                   </label>
               </ibm-label>
           </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+              <ibm-label>
+                <input ibmText formControlName = "empserial" id="empserial" style="width: auto;">
+              </ibm-label>
+              <div *ngIf="((EmpInfoForm.get('empserial').invalid && EmpInfoForm.get('empserial').touched) ||
+          (EmpInfoForm.get('empserial').untouched && this.formSubmitAttempt))">
+              <div class="error-msg" *ngIf="EmpInfoForm.get('empserial').errors.required">
+                  Employee Serial is required
+              </div>
+            </div>
+          </div>
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+          <div *ngIf="!!EmpInfoForm.value.comptypselect">
+            <div *ngIf="EmpInfoForm.value.comptypselect !='New Employee'" > 
+              <ibm-label>
+                <fieldset class="bx--fieldset">
+                    <ibm-radio-group aria-label="radiogroup" formControlName="homeorHost" (change)="changeHomeorHost($event)">
+                      <ibm-radio value="Home" >Home</ibm-radio>
+                      <ibm-radio value="Host" >Host</ibm-radio>
+              
+                    </ibm-radio-group>
+                  </fieldset>
+              </ibm-label>
+              <div *ngIf="((EmpInfoForm.get('homeorHost').invalid && EmpInfoForm.get('homeorHost').touched) ||
+          (EmpInfoForm.get('homeorHost').untouched && this.formSubmitAttempt))">
+              <div class="error-msg" *ngIf="EmpInfoForm.get('HomeorHost').errors.required">
+                  Please select the radio of Employee serial
+              </div>
+          </div>     
+            </div>
+          </div>
+        </div>
+             
+      </div>
+  <!--    <div *ngIf="!!EmpInfoForm.value.comptypselect">
+        <div *ngIf="EmpInfoForm.value.comptypselect.value!='New Employee'" > 
+          <div ibmRow >
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
               <ibm-label>
-                <ibm-radio-group aria-label="radiogroup" (change)="changeVisaStatus($event)">
-                  <ibm-radio value="Home" formControlName="visaStatus" >Applying for Visa</ibm-radio>
-                  <ibm-radio value="Host" formControlName="visaStatus" [checked]="true" >Currently Holding Visa</ibm-radio>
+                <ibm-radio-group aria-label="radiogroup" (change)="changeHomeorHost($event)">
+                  <ibm-radio value="Home" formControlName="HomeorHost" [checked]="true">Home</ibm-radio>
+                  <ibm-radio value="Host" formControlName="HomeorHost" >Host</ibm-radio>
           
                 </ibm-radio-group>
               </ibm-label>
             </div>
             <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
-           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+              <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
           </div>
         </div>
-      </div>
-       <div ibmRow >
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-          <ibm-label><br>
-              <label style="font-size:medium;font-weight: bold;">Will the Employee be in the US greater than 89 days?:*
-              </label>
-          </ibm-label>
-      </div>
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
-          <ibm-label><br>
-            <ibm-radio-group aria-label="radiogroup" (change)="changeStayinUS($event)">
-              <ibm-radio value="Home" formControlName="us89daysstay" [checked]="true">Yes</ibm-radio>
-              <ibm-radio value="Host" formControlName="us89daysstay" >No</ibm-radio>
+      </div> -->
       
-            </ibm-radio-group>
-          </ibm-label>
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
-           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+      
+          
+          
+          
+      
+  
+        <div ibmRow >
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+             <ibm-label><br>
+             <label style="font-size:medium;font-weight: bold;" for="countryselect">Employee Home Country:</label>
+             </ibm-label>
+          </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+          <!--   <ibm-label>    -->
+            <!--adding-->
+            <br>
+             <select style="width: 190px" id="countryselect" formControlName="countryselect" > 
+              <option  value="">---Select---</option>
+              <option *ngFor="let countryCode of createComp.countryCodeMap | keyvalue" [ngValue]=countryCode>
+                  {{countryCode.value}}
+              </option>
+             </select> 
+          <!--   </ibm-label> -->
+          <div *ngIf="((EmpInfoForm.get('countryselect').invalid && EmpInfoForm.get('countryselect').touched) ||
+          (EmpInfoForm.get('countryselect').untouched && this.formSubmitAttempt))">
+         <div class="error-msg" *ngIf="EmpInfoForm.get('countryselect').errors.required">
+             Employee Home Country is required
+         </div>
+       </div>
+           </div>
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
       </div>
-       <div ibmRow style="padding-top: 20px;">
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
-          <ibm-label>
-            <button ibmButton>Submit</button>&nbsp;
-            <button ibmButton="secondary" (click)="onClose()">Close</button>
-          </ibm-label>
-        </div>
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmRow >
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+              <ibm-label><br>
+                  <label style="font-size:medium;font-weight: bold;">Assignment PMP Seat ID:</label>
+              </ibm-label>
+          </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+              <ibm-label>
+                <input ibmText id="pmpseatid" formControlName = "pmpseatid" style="width: auto;">
+              </ibm-label>
+              <div *ngIf="((EmpInfoForm.get('pmpseatid').invalid && EmpInfoForm.get('pmpseatid').touched) ||
+               (EmpInfoForm.get('pmpseatid').untouched && this.formSubmitAttempt))">
+              <div class="error-msg" *ngIf="EmpInfoForm.get('pmpseatid').errors.required">
+                  PMP seat Id is required
+              </div>
+            </div>
+          </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+          
       </div>
-     
-    </form>
+      <div ibmRow >
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+             <ibm-label><br>
+             <label style="font-size:medium;font-weight: bold;" for="empvisatype">Please indicate type of Visa employee is holding ?:</label>
+             </ibm-label>
+          </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+            <!-- <ibm-label><br> -->
+              <br>
+             <select  style="width: 190px" id="empvisatype" (change)="changeVisaType($event)" formControlName="empvisatype" > 
+              <option  value="Select">---Select---</option>
+              <option *ngFor="let visatype of createComp.visaType | keyvalue" [ngValue]=visatype>
+                  {{visatype.value}}
+              </option>
+              </select> 
+            <!-- </ibm-label> -->
+            <div *ngIf="((EmpInfoForm.get('empvisatype').invalid && EmpInfoForm.get('empvisatype').touched) ||
+               (EmpInfoForm.get('empvisatype').untouched && this.formSubmitAttempt))">
+              <div class="error-msg" *ngIf="EmpInfoForm.get('empvisatype').errors.required">
+                  Visa Type is required
+                  </div>
+                  </div>
+           </div>  
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+     </div>
+     <div *ngIf="!!EmpInfoForm.value.comptypselect">
+      <div *ngIf="EmpInfoForm.value.comptypselect =='New Employee'" > 
+        <div ibmRow >
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+            <ibm-label><br>
+                <label style="font-size:medium;font-weight: bold;">Visa Status:*
+                </label>
+            </ibm-label>
+        </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
+            <ibm-label>
+              <fieldset class="bx--fieldset">
+              <ibm-radio-group aria-label="radiogroup"  formControlName="visaStatus" (change)="changeVisaStatus($event)">
+                <ibm-radio value="Home"  >Applying for Visa</ibm-radio>
+                <ibm-radio value="Host"  [checked]="true" >Currently Holding Visa</ibm-radio>
+        
+              </ibm-radio-group>
+            </fieldset>
+            </ibm-label>
+          
+          </div>
+          <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+        </div>
+      </div>
+    </div>
+     <div ibmRow >
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
+        <ibm-label><br>
+            <label style="font-size:medium;font-weight: bold;">Will the Employee be in the US greater than 89 days?:*
+            </label>
+        </ibm-label>
+    </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
+        <ibm-label><br>
+          <fieldset class="bx--fieldset">
+          <ibm-radio-group aria-label="radiogroup" formControlName="us89daysstay" (change)="changeStayinUS($event)">
+            <ibm-radio value="Home"  [checked]="true">Yes</ibm-radio>
+            <ibm-radio value="Host"  >No</ibm-radio>
+    
+          </ibm-radio-group>
+        </fieldset>
+        </ibm-label>
+      </div>
+    <!--  <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
+         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> -->
+    </div>
+     <div ibmRow style="padding-top: 20px;">
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
+        <ibm-label>
+          <button ibmButton>Submit</button>&nbsp;
+          <button ibmButton="secondary" (click)="onClose()">Close</button>
+        </ibm-label>
+      </div>
+      <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
+    </div>
+   
+  </form>
 </div>
-    <!--<div *ngIf="flog">-->
-    <!--<app-update-comp-request [empData]="respData"></app-update-comp-request>-->
-    <!--</div> -->
+  <!--<div *ngIf="flog">-->
+  <!--<app-update-comp-request [empData]="respData"></app-update-comp-request>-->
+  <!--</div> -->
