@@ -98,8 +98,14 @@ export class RaiseCompRequestComponent implements OnInit {
   this.formSubmitAttempt = false;
   }
 
-   changeCompensationType(event:any) {
+   /*changeCompensationType(event:any) {
     this.EmpInfoForm.value.comptypselect=event.target.value;
+  }*/
+  changeCompensationType(e) {
+    console.log(e.value)
+    this.EmpInfoForm.value.comptypselect.setValue(e.target.value, {
+      onlySelf: true
+    })
   }
   
   changeHomeorHost(e) {
