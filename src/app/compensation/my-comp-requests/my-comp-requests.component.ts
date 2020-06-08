@@ -12,6 +12,9 @@ import { CompensationService } from 'src/app/services/compensation.service';
 })
 export class MyCompRequestsComponent implements OnInit {
 
+  showLoader: boolean;
+  isActive: boolean;
+  overlay: boolean;
   data = [];
   model = new TableModel();
   modelDraft = new TableModel();
@@ -52,6 +55,9 @@ export class MyCompRequestsComponent implements OnInit {
   constructor(private router: Router, public compensationService: CompensationService) { }
 
   ngOnInit(): void {
+    this.showLoader = true;
+    this.isActive = true;
+    this.overlay = true;
     // this.model.header = [
     //   new TableHeaderItem({data: 'Employee Serial'}),
     //   new TableHeaderItem({data: 'Host Serial'}),
@@ -93,6 +99,9 @@ export class MyCompRequestsComponent implements OnInit {
       console.log('comprecords: ', this.comprecords);
       this.sortCompRecords();
     });
+    this.showLoader = false;
+    this.isActive = false;
+    this.overlay = false;
   }
 
   setmodelParameters(model){

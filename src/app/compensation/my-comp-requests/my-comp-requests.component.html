@@ -2,45 +2,50 @@
     <h1 ibmRow id="heading">My comp requests</h1>
  
     <div style="margin-left: 82%;">
-    <button   ibmButton="tertiary" class="customButton" size="normal" type="submit" style="padding-left: 8%; padding-right: 8%; font-weight: bold; border-width: 2px;" (click)="createCompReq()" >
-        Create Compensation Request
-    </button>
+        <button   ibmButton="tertiary" class="customButton" size="normal" type="submit" style="padding-left: 8%; padding-right: 8%; font-weight: bold; border-width: 2px;" (click)="createCompReq()" >
+            Create Compensation Request
+        </button>
     </div>
     <br />
     <br/>
+    <div *ngIf="showLoader" >
+        <ibm-loading [isActive]="isActive" size="sm"  [overlay]="overlay">
+           
+        </ibm-loading>
+    </div>
     <ibm-accordion style="color: darkcyan;">
         <ibm-accordion-item  title="Compensation Requests - In Progress" expanded="true" >
             <ibm-table-container >
-            <div *ngIf="modelDraft.totalDataLength===0 && modelInit.totalDataLength===0 && modelInitAddnInfoAdded.totalDataLength===0 && modelDiscuss.totalDataLength===0 && modelDiscussReqInfoAdded.totalDataLength===0 && modelMgrAccepted.totalDataLength===0 && modelMgrAcceptanceOverriden.totalDataLength===0">  
-                <ibm-table 
-	                [skeleton]="skeleton"
-	                [model]="skeleton ? skeletonModel : model"
-	                [showSelectionColumn]="false"
-                    [striped]="false">
-                </ibm-table>
-            </div>  
+                <div *ngIf="modelDraft.totalDataLength===0 && modelInit.totalDataLength===0 && modelInitAddnInfoAdded.totalDataLength===0 && modelDiscuss.totalDataLength===0 && modelDiscussReqInfoAdded.totalDataLength===0 && modelMgrAccepted.totalDataLength===0 && modelMgrAcceptanceOverriden.totalDataLength===0">  
+                    <ibm-table 
+	                    [skeleton]="skeleton"
+	                    [model]="skeleton ? skeletonModel : model"
+	                    [showSelectionColumn]="false"
+                        [striped]="false">
+                    </ibm-table>
+                </div>  
                 <br/>
                 <p class="status">Status : Draft</p>
                 <div *ngIf="modelDraft.totalDataLength>0; else display">
-	            <ibm-table 
-	                [skeleton]="skeleton"
-	                [model]="skeleton ? skeletonModel : modelDraft"
-	                [showSelectionColumn]="false"
-                    [striped]="false">
-                    <tbody>
-                </ibm-table>
+	                <ibm-table 
+	                    [skeleton]="skeleton"
+	                    [model]="skeleton ? skeletonModel : modelDraft"
+	                    [showSelectionColumn]="false"
+                        [striped]="false">
+                        <tbody>
+                    </ibm-table>
                 </div>
                 <br ibmRow/>
                 <p class="status">Status : Initiated</p>
                 <div *ngIf="modelInit.totalDataLength>0; else display">
-                <ibm-table *ngIf="modelInit!=null"
-                [skeleton]="skeleton"
-                [model]="skeleton ? skeletonModel : modelInit"
-                [showSelectionColumn]="false"
-                [striped]="false">
-                </ibm-table>
+                    <ibm-table *ngIf="modelInit!=null"
+                    [skeleton]="skeleton"
+                    [model]="skeleton ? skeletonModel : modelInit"
+                    [showSelectionColumn]="false"
+                    [striped]="false">
+                    </ibm-table>
                 </div>
-                <ng-template #display ><p class="no-data">No records.</p></ng-template>
+                <ng-template #display ><div class="marquee"><p class="no-data">No records available for this status.</p></div></ng-template>
                 <br ibmRow/>
                 <p class="status">Status:Initiated-Required Information Added</p>
                 <div *ngIf="modelInitAddnInfoAdded.totalDataLength>0; else display">
@@ -212,6 +217,6 @@
                 </ibm-table>
                 </div>
             </ibm-table-container>
-            </ibm-accordion-item>
+            </ibm-accordion-item>            
     </ibm-accordion>
 </div>
