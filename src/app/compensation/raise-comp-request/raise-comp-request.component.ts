@@ -83,8 +83,9 @@ export class RaiseCompRequestComponent implements OnInit {
         console.log("Responce: "+JSON.stringify(resp));
         this.respData = resp.body;
         //this.createComp = resp.body
-        this.changeFlog();
+        // this.changeFlog();
         //this.router.navigate(['/updateCompRequest']);
+        this.router.navigate(['/comp/updateCompRequest'], { state: this.respData });
       });
     }
    isFieldValid(field: string) {
@@ -128,11 +129,11 @@ export class RaiseCompRequestComponent implements OnInit {
     this.EmpInfoForm.value.us89daysstay=event.target.value;
   }
 
-  changeFlog(){
-    console.log('FLOG: '+this.flog);
-    this.flog=!this.flog;
-    console.log('FLOG: '+this.flog);
-  }
+  // changeFlog(){
+  //   console.log('FLOG: '+this.flog);
+  //   this.flog=!this.flog;
+  //   console.log('FLOG: '+this.flog);
+  // }
 
   onClose(){
     this.formSubmitAttempt = false;
