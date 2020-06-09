@@ -73,6 +73,9 @@ export class RaiseCompRequestComponent implements OnInit {
       this.createComp.countryCode=this.EmpInfoForm.value.countryselect.key;
       this.createComp.compType=this.EmpInfoForm.value.comptypselect.key;
       this.createComp.visaTyp=this.EmpInfoForm.value.empvisatype.key;
+      const listofRoles = sessionStorage.getItem('userdata');
+      const json = JSON.parse(listofRoles);
+      this.createComp.empSerialNo=json.hostEmpSerial;
    
       this.compService.getEmployeeDetails(this.createComp).subscribe(resp =>{
         this.statusCode = resp.status;
@@ -80,8 +83,9 @@ export class RaiseCompRequestComponent implements OnInit {
         console.log("Responce: "+JSON.stringify(resp));
         this.respData = resp.body;
         //this.createComp = resp.body
-        this.changeFlog();
+        // this.changeFlog();
         //this.router.navigate(['/updateCompRequest']);
+        this.router.navigate(['/comp/updateCompRequest'], { state: this.respData });
       });
     }
    isFieldValid(field: string) {
@@ -101,33 +105,38 @@ export class RaiseCompRequestComponent implements OnInit {
    /*changeCompensationType(event:any) {
     this.EmpInfoForm.value.comptypselect=event.target.value;
   }*/
-  changeCompensationType(e) {
-    console.log(e.value)
-    this.EmpInfoForm.value.comptypselect.setValue(e.target.value, {
+  changeCompensationType(event:any) {
+  /*  this.EmpInfoForm.value.comptypselect.setValue(e.target.value, {
       onlySelf: true
-    })
+    })*/
+    //this.EmpInfoForm.value.comptypselect=this.EmpInfoForm.value.comptypselect.value;
   }
   
-  changeHomeorHost(e) {
-    console.log(e.value);
+  changeHomeorHost(event:any) {
+    //this.EmpInfoForm.value.homeorHost=event.target.value;
     /*this.EmpInfoForm.value.comptypselect.setValue(e.target.value, {
       onlySelf: true
     })*/
   }
-  changeVisaStatus(e){
-    console.log(e.value);
+  changeVisaType(event:any) {
+   // this.EmpInfoForm.value.empvisatype=event.target.value;
   }
-  changeStayinUS(e){
-    console.log(e.value);
+  
+  changeVisaStatus(event:any){
+    this.EmpInfoForm.value.visaStatus=event.target.value;
+  }
+  changeStayinUS(event:any){
+    this.EmpInfoForm.value.us89daysstay=event.target.value;
   }
 
-  changeFlog(){
-    console.log('FLOG: '+this.flog);
-    this.flog=!this.flog;
-    console.log('FLOG: '+this.flog);
-  }
+  // changeFlog(){
+  //   console.log('FLOG: '+this.flog);
+  //   this.flog=!this.flog;
+  //   console.log('FLOG: '+this.flog);
+  // }
 
   onClose(){
+    this.formSubmitAttempt = false;
     this.router.navigate(['/comp/myCompRequests']);
   }
   

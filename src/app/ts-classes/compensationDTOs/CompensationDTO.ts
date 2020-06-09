@@ -9,4 +9,5 @@ export class CompensationDTO{
     countryCode:String;
     compType:String;
     visaTyp:String;
+    empSerialNo:String;
 }
