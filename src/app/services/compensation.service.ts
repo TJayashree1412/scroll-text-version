@@ -17,16 +17,16 @@ export class CompensationService {
   constructor(private httpClient: HttpClient) {
     this.url = 'http://localhost:8080/USHCAM';
   }
- 
+
    getEmployeeDetails(createComp: any) {
-    return this.httpClient.post(this.url +'/getEmployeeDetails', createComp, {
+    return this.httpClient.post(this.url + '/getEmployeeDetails', createComp, {
       observe: 'response'
     })
     .pipe(catchError(this.handleError));
   }
 
   createCompensation(): Observable <HttpResponse<CompensationDTO>> {
-    return this.httpClient.get<CompensationDTO>(this.url +'/createCompReq', {
+    return this.httpClient.get<CompensationDTO>(this.url + '/createCompReq', {
       observe: 'response'
     });
   }

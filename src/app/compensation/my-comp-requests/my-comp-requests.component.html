@@ -1,17 +1,17 @@
 <div class="page-header">
-    <h1 ibmRow id="heading">My comp requests</h1>
+    <h1 ibmRow id="heading">My comp requests </h1>
  
     <div style="margin-left: 82%;">
         <button   ibmButton="tertiary" class="customButton" size="normal" type="submit" style="padding-left: 8%; padding-right: 8%; font-weight: bold; border-width: 2px;" (click)="createCompReq()" >
-            Create Compensation Request
+            Create Compensation Request 
         </button>
     </div>
     <br />
     <br/>
     <div *ngIf="showLoader" >
-        <ibm-loading [isActive]="isActive" size="sm"  [overlay]="overlay">
-           
+        <ibm-loading [isActive]="isActive" size="normal"  [overlay]="overlay" >
         </ibm-loading>
+        
     </div>
     <ibm-accordion style="color: darkcyan;">
         <ibm-accordion-item  title="Compensation Requests - In Progress" expanded="true" >

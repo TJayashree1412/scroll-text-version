@@ -99,9 +99,6 @@ export class MyCompRequestsComponent implements OnInit {
       console.log('comprecords: ', this.comprecords);
       this.sortCompRecords();
     });
-    this.showLoader = false;
-    this.isActive = false;
-    this.overlay = false;
   }
 
   setmodelParameters(model){
@@ -288,6 +285,9 @@ export class MyCompRequestsComponent implements OnInit {
     this.modelArchived.data = this.prepareData(this.compArchived);
     this.modelOtherRecords.data = this.prepareData(this.otherCompRecords);
     this.modelInit.totalDataLength = this.compInit.length;
+    this.showLoader = false;
+    this.isActive = false;
+    this.overlay = false;
   }
 
   createCompReq() {
