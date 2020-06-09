@@ -22,6 +22,7 @@ export class RaiseCompRequestComponent implements OnInit {
   flog:boolean=false;
   respData:{}=null;
   formSubmitAttempt: boolean;
+  hasValidationErrors:boolean;
 
   
   EmpInfoForm = new FormGroup({
@@ -30,9 +31,9 @@ export class RaiseCompRequestComponent implements OnInit {
   empvisatype: new FormControl(null,[Validators.required]),
   comptypselect:new FormControl(null,[Validators.required]),
   countryselect:new FormControl(null,[Validators.required]),
-  homeorHost:new FormControl(null,[Validators.required]),
-  visaStatus:new FormControl(null,[Validators.required]),
-  us89daysstay:new FormControl('Yes')
+  homeorHostName:new FormControl(null,[Validators.required]),
+  visaStatusName:new FormControl(null,[Validators.required]),
+  emplt89Name:new FormControl(),
   
   });
   
@@ -47,7 +48,6 @@ export class RaiseCompRequestComponent implements OnInit {
     }
  
   async createCompensation(){
-    console.log('Satya')
     this.compService.createCompensation().subscribe(
      data =>{
          this.createComp = data.body;
@@ -73,6 +73,13 @@ export class RaiseCompRequestComponent implements OnInit {
       this.createComp.countryCode=this.EmpInfoForm.value.countryselect.key;
       this.createComp.compType=this.EmpInfoForm.value.comptypselect.key;
       this.createComp.visaTyp=this.EmpInfoForm.value.empvisatype.key;
+      this.createComp.emplt89=this.EmpInfoForm.value.emplt89Name.key;
+      if(this.EmpInfoForm.value.comptypselect.value !='New Employee'){
+      this.createComp.serialCountry=this.EmpInfoForm.value.homeorHostName.key;
+      }
+      if(this.EmpInfoForm.value.comptypselect.value =='New Employee'){
+      this.createComp.visaStatus=this.EmpInfoForm.value.visaStatusName.key;
+      }
       const listofRoles = sessionStorage.getItem('userdata');
       const json = JSON.parse(listofRoles);
       this.createComp.empSerialNo=json.hostEmpSerial;
@@ -123,10 +130,11 @@ export class RaiseCompRequestComponent implements OnInit {
   }
   
   changeVisaStatus(event:any){
-    this.EmpInfoForm.value.visaStatus=event.target.value;
+    //this.EmpInfoForm.value.visaStatusName=event;
+   // this.EmpInfoForm.value.visaStatus=event.target.value;
   }
   changeStayinUS(event:any){
-    this.EmpInfoForm.value.us89daysstay=event.target.value;
+    //this.EmpInfoForm.value.us89daysstay=event.target.value;
   }
 
   // changeFlog(){
