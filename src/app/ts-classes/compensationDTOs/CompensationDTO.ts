@@ -3,6 +3,8 @@ export class CompensationDTO{
     visaStatusMap :Map<String,String>;
     compensationType :Map<String,String>;
     countryCodeMap :Map<String,String>;
+    emplt89Map:Map<String,String>;
+    homeorHostMap:Map<String,String>;
     defaultPMPFlag :String;
     empserial:String;
     pmpseatid:String;
@@ -10,4 +12,7 @@ export class CompensationDTO{
     compType:String;
     visaTyp:String;
     empSerialNo:String;
+    visaStatus:String;
+    serialCountry:String;
+    emplt89:String;
 }

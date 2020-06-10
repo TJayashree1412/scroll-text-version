@@ -29,7 +29,7 @@
                  <!--adding-->
                  <br>
                   <select style="width: 190px"
-                    id="comptypselect"  formControlName="comptypselect"  (change)="changeCompensationType($event)"> 
+                    id="comptypselect"  formControlName="comptypselect"> 
                       <option  value="">---Select---</option>
                       <option  *ngFor="let compType of createComp.compensationType | keyvalue" [ngValue]=compType>
                           {{compType.value}}
@@ -69,19 +69,21 @@
            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div> 
           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
           <div *ngIf="!!EmpInfoForm.value.comptypselect">
-            <div *ngIf="EmpInfoForm.value.comptypselect !='New Employee'" > 
+            <div *ngIf="EmpInfoForm.value.comptypselect.value !='New Employee'" > 
               <ibm-label>
                 <fieldset class="bx--fieldset">
-                    <ibm-radio-group aria-label="radiogroup" formControlName="homeorHost" (change)="changeHomeorHost($event)">
-                      <ibm-radio value="Home" >Home</ibm-radio>
-                      <ibm-radio value="Host" >Host</ibm-radio>
+                    <ibm-radio-group aria-label="radiogroup" formControlName="homeorHostName">
+                     <!-- <ibm-radio value="Home" >Home</ibm-radio>
+                      <ibm-radio value="Host" >Host</ibm-radio> -->
+                      <ibm-radio *ngFor="let homeorHost of createComp.homeorHostMap | keyvalue" [value]=homeorHost>
+                        {{homeorHost.value}}</ibm-radio>
               
                     </ibm-radio-group>
                   </fieldset>
               </ibm-label>
-              <div *ngIf="((EmpInfoForm.get('homeorHost').invalid && EmpInfoForm.get('homeorHost').touched) ||
-          (EmpInfoForm.get('homeorHost').untouched && this.formSubmitAttempt))">
-              <div class="error-msg" *ngIf="EmpInfoForm.get('HomeorHost').errors.required">
+              <div *ngIf="((EmpInfoForm.get('homeorHostName').invalid && EmpInfoForm.get('homeorHostName').touched) ||
+          (EmpInfoForm.get('homeorHostName').untouched && this.formSubmitAttempt))">
+              <div class="error-msg" *ngIf="EmpInfoForm.get('homeorHostName').errors.required">
                   Please select the radio of Employee serial
               </div>
           </div>     
@@ -110,6 +112,7 @@
       
       
           
+
           
           
       
@@ -171,7 +174,7 @@
           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
             <!-- <ibm-label><br> -->
               <br>
-             <select  style="width: 190px" id="empvisatype" (change)="changeVisaType($event)" formControlName="empvisatype" > 
+             <select  style="width: 190px" id="empvisatype"  formControlName="empvisatype" > 
               <option  value="Select">---Select---</option>
               <option *ngFor="let visatype of createComp.visaType | keyvalue" [ngValue]=visatype>
                   {{visatype.value}}
@@ -181,7 +184,7 @@
             <div *ngIf="((EmpInfoForm.get('empvisatype').invalid && EmpInfoForm.get('empvisatype').touched) ||
                (EmpInfoForm.get('empvisatype').untouched && this.formSubmitAttempt))">
               <div class="error-msg" *ngIf="EmpInfoForm.get('empvisatype').errors.required">
-                  Visa Type is required
+                 Visa Type is required
                   </div>
                   </div>
            </div>  
@@ -189,7 +192,7 @@
            <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}"></div>
      </div>
      <div *ngIf="!!EmpInfoForm.value.comptypselect">
-      <div *ngIf="EmpInfoForm.value.comptypselect =='New Employee'" > 
+      <div *ngIf="EmpInfoForm.value.comptypselect.value =='New Employee'" > 
         <div ibmRow >
           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
             <ibm-label><br>
@@ -200,10 +203,11 @@
           <div ibmCol [columnNumbers]="{'md': 4, 'lg': 4}">
             <ibm-label>
               <fieldset class="bx--fieldset">
-              <ibm-radio-group aria-label="radiogroup"  formControlName="visaStatus" (change)="changeVisaStatus($event)">
-                <ibm-radio value="Home"  >Applying for Visa</ibm-radio>
-                <ibm-radio value="Host"  [checked]="true" >Currently Holding Visa</ibm-radio>
-        
+              <ibm-radio-group aria-label="radiogroup"  formControlName="visaStatusName">
+               <!-- <ibm-radio value="Home"  >Applying for Visa</ibm-radio>
+                <ibm-radio value="Host"  [checked]="true" >Currently Holding Visa</ibm-radio> -->
+                <ibm-radio *ngFor="let visaStatus of createComp.visaStatusMap | keyvalue" [value]=visaStatus >
+                  {{visaStatus.value}}</ibm-radio>
               </ibm-radio-group>
             </fieldset>
             </ibm-label>
@@ -224,10 +228,11 @@
       <div ibmCol [columnNumbers]="{'md': 4, 'lg': 8}">
         <ibm-label><br>
           <fieldset class="bx--fieldset">
-          <ibm-radio-group aria-label="radiogroup" formControlName="us89daysstay" (change)="changeStayinUS($event)">
-            <ibm-radio value="Home"  [checked]="true">Yes</ibm-radio>
-            <ibm-radio value="Host"  >No</ibm-radio>
-    
+          <ibm-radio-group aria-label="radiogroup" formControlName="emplt89Name">
+           <!-- <ibm-radio value="Home"  [checked]="true">Yes</ibm-radio>
+            <ibm-radio value="Host"  >No</ibm-radio> -->
+            <ibm-radio *ngFor="let emplt89 of createComp.emplt89Map | keyvalue" [value]=emplt89 >
+              {{emplt89.value}}</ibm-radio>
           </ibm-radio-group>
         </fieldset>
         </ibm-label>
