@@ -24,20 +24,6 @@
     font-size: 0.9rem;
 }
 
-//scrolling text css
-.marquee {
-	color: Black;
-    white-space: nowrap;
-    border-top: 1px solid #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-    background: #fff;
-}
-.marquee p {
-    display: inline-block;
-    padding-left: 80%;
-    animation: marquee 20s linear infinite;
-}
-@keyframes marquee {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
-}
+// .bx--loading-overlay{
+//     top: -15%;
+// }

@@ -1,4 +1,9 @@
 <div class="page-header">
+    <div *ngIf="showLoader" >
+        <ibm-loading [isActive]="isActive" size="normal"  [overlay]="overlay" style="top: -16%;">
+        </ibm-loading>
+        
+    </div>
     <h1 ibmRow id="heading">My comp requests </h1>
  
     <div style="margin-left: 82%;">
@@ -8,11 +13,6 @@
     </div>
     <br />
     <br/>
-    <div *ngIf="showLoader" >
-        <ibm-loading [isActive]="isActive" size="normal"  [overlay]="overlay" >
-        </ibm-loading>
-        
-    </div>
     <ibm-accordion style="color: darkcyan;">
         <ibm-accordion-item  title="Compensation Requests - In Progress" expanded="true" >
             <ibm-table-container >
